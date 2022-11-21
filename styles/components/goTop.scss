@@ -1,0 +1,19 @@
+.go-to-top-container {
+    .badge-btn {
+        position: fixed;
+        right: 30px;
+        bottom: 85px;
+        color: $primary !important;
+        background: white !important;
+        transition: 0.4s all;
+        padding: 7px 12px 10px 12px;
+        &:hover {
+            color: white !important;
+            background: $primary !important;
+        }
+        @media (min-width: 992px) {
+            right: 40px;
+            bottom: 40px;
+        }
+    }
+}

@@ -1,0 +1,59 @@
+// account-sidebar-container
+.account-sidebar-container {
+    // position: fixed;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: $secondary;
+    overflow-y: auto;
+
+    // Menu items
+    .menu-items {
+        padding: 15px;
+
+        .btn {
+            border: 0;
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+            transition: 0.4s all;
+
+            &:focus {
+                border: 0;
+                box-shadow: none;
+            }
+
+            i {
+                color: $primary;
+                // padding: 6px 10px;
+                // padding: 0px !important;
+                // border-radius: 25px;
+                // background: $primary;
+            }
+
+            span {
+                color: #6c757d;
+                font-size: 14px;
+                margin-bottom: 0;
+                text-transform: capitalize;
+            }
+        }
+
+        .active {
+            background: $primary;
+
+            i {
+                color: #fff;
+                background: $primary;
+            }
+            span {
+                color: #fff ;
+            }
+        }
+    }
+
+    // @media (min-width: 992px) {
+    //     border-radius: 6px;
+    // }
+}

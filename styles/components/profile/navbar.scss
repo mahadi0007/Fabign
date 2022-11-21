@@ -1,0 +1,30 @@
+// Mobile Navbar
+.account-mobile-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  z-index: 99;
+
+  .name-image {
+    margin-top: 3px;
+
+    h5 {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+}

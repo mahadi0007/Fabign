@@ -1,0 +1,69 @@
+.search-field-container {
+    position: relative;
+    .input-group {
+        position: relative;
+        .form-control {
+            // width: 100%;
+            background: none;
+            padding-left: 15px;
+            padding-right: 45px;
+            font-size: 13px;
+            min-height: 42px;
+            box-shadow: none !important;
+            border: 1px solid #dfdfdf;
+            &:focus {
+                border: 1px solid #dfdfdf;
+                border-right: 0 !important;
+            }
+        }
+        .btn {
+            border-radius: 0 !important;
+        }
+    }
+    // Suggest container
+    .suggest-container {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        .card {
+            padding: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            .item {
+                width: 100%;
+                padding: 10px;
+                cursor: pointer;
+                border-bottom: 1px solid #ffffff;
+                .img-container {
+                    width: 50px;
+                    overflow: hidden;
+                    img {
+                        min-width: 50px;
+                    }
+                }
+                p {
+                    font-size: 14px;
+                    margin-top: 15px;
+                    margin-bottom: 0;
+                    margin-left: 10px;
+                }
+                &:hover {
+                    background: #ffffff;
+                }
+            }
+            .message {
+                p {
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: $primary;
+                    margin-bottom: 0;
+                }
+            }
+        }
+        @media (min-width: 992px) {
+            min-width: 500px !important;
+        }
+    }
+}

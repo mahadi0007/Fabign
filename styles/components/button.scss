@@ -1,0 +1,64 @@
+.btn {
+    color: #fff !important;
+}
+
+.btn-primary {
+    background: $primary;
+    padding: 10px 25px;
+}
+
+.btn-secondary {
+    background: $secondary;
+    padding: 10px 25px;
+}
+
+.btn-danger {
+    color: #f60e0e !important;
+    background: $gray-100 !important;
+    &:hover {
+        color: #fc052e !important;
+        background: rgb(236, 155, 155) !important;
+    }
+}
+
+.btn-circle {
+    border-radius: 50% !important;
+    padding: 9px 12px !important
+}
+
+.btn-gray {
+    background-color: $gray-100;
+    padding: 10px 25px;
+    color: black;
+}
+
+.btn-white {
+    background-color: $white;
+    padding: 10px 25px;
+    color: black;
+}
+
+.btn-success {
+    color: #198754 !important;
+    background: #19875417 !important;
+
+    &:hover {
+        color: #198754 !important;
+        background: #19875444 !important;
+    }
+}
+
+.btn-gray-hover {
+    background-color: #969696;
+    padding: 10px 25px;
+    &:hover {
+        background: $primary !important;
+    }
+}
+
+.btn-dark-blue {
+    background: #1C2B4A !important;
+    &:hover {
+        background: #273757 !important;
+    }
+}

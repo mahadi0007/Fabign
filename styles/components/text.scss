@@ -1,0 +1,495 @@
+.fs-8 {
+  font-size: 8px !important;
+}
+
+.fs-9 {
+  font-size: 9px !important;
+}
+
+.fs-10 {
+  font-size: 10px !important;
+}
+
+.fs-11 {
+  font-size: 11px !important;
+}
+
+.fs-12 {
+  font-size: 12px !important;
+  @include respond(laptopbig) {
+    font-size: 10px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 8px;
+  }
+}
+
+.fs-13 {
+  font-size: 13px !important;
+  @include respond(laptopbig) {
+    font-size: 11px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 9px;
+  }
+}
+
+.fs-14 {
+  font-size: 14px !important;
+  @include respond(laptopbig) {
+    font-size: 12px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 10px;
+  }
+}
+
+.fs-15 {
+  font-size: 15px !important;
+  @include respond(laptopbig) {
+    font-size: 13px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 11px;
+  }
+}
+
+.fs-16 {
+  font-size: 16px !important;
+  @include respond(laptopbig) {
+    font-size: 14px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 12px;
+  }
+}
+
+.fs-17 {
+  font-size: 17px !important;
+  @include respond(laptopbig) {
+    font-size: 15px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 13px;
+  }
+  @include respond(tablet) {
+    font-size: 11px;
+  }
+}
+
+.fs-18 {
+  font-size: 18px !important;
+  @include respond(laptopbig) {
+    font-size: 16px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 14px;
+  }
+  @include respond(tablet) {
+    font-size: 12px;
+  }
+}
+
+.fs-19 {
+  font-size: 19px !important;
+  @include respond(laptopbig) {
+    font-size: 17px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 15px;
+  }
+  @include respond(tablet) {
+    font-size: 13px;
+  }
+  @include respond(smalldevice) {
+    font-size: 11px;
+  }
+}
+
+.fs-20 {
+  font-size: 20px !important;
+  @include respond(laptopbig) {
+    font-size: 18px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 16px;
+  }
+  @include respond(tablet) {
+    font-size: 14px;
+  }
+  @include respond(smalldevice) {
+    font-size: 12px;
+  }
+}
+
+.fs-21 {
+  font-size: 21px !important;
+  @include respond(laptopbig) {
+    font-size: 19px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 17px;
+  }
+  @include respond(tablet) {
+    font-size: 15px;
+  }
+  @include respond(smalldevice) {
+    font-size: 13px;
+  }
+}
+
+.fs-22 {
+  font-size: 22px !important;
+  @include respond(laptopbig) {
+    font-size: 16px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 14px;
+  }
+  @include respond(tablet) {
+    font-size: 12px;
+  }
+  @include respond(smalldevice) {
+    font-size: 10px;
+  }
+}
+
+.fs-23 {
+  font-size: 23px !important;
+  @include respond(laptopbig) {
+    font-size: 21px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 19px;
+  }
+  @include respond(tablet) {
+    font-size: 17px;
+  }
+  @include respond(smalldevice) {
+    font-size: 15px;
+  }
+}
+
+.fs-24 {
+  font-size: 24px !important;
+  @include respond(laptopbig) {
+    font-size: 22px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 20px;
+  }
+  @include respond(tablet) {
+    font-size: 18px;
+  }
+  @include respond(smalldevice) {
+    font-size: 16px;
+  }
+}
+
+.fs-25 {
+  font-size: 25px !important;
+  @include respond(laptopbig) {
+    font-size: 23px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 21px;
+  }
+  @include respond(tablet) {
+    font-size: 19px;
+  }
+  @include respond(smalldevice) {
+    font-size: 17px;
+  }
+}
+
+.fs-26 {
+  font-size: 26px !important;
+  @include respond(laptopbig) {
+    font-size: 24px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 22px;
+  }
+  @include respond(tablet) {
+    font-size: 20px;
+  }
+  @include respond(smalldevice) {
+    font-size: 18px;
+  }
+}
+
+.fs-27 {
+  font-size: 27px !important;
+  @include respond(laptopbig) {
+    font-size: 25px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 23px;
+  }
+  @include respond(tablet) {
+    font-size: 21px;
+  }
+  @include respond(smalldevice) {
+    font-size: 19px;
+  }
+}
+
+.fs-28 {
+  font-size: 28px !important;
+  @include respond(laptopbig) {
+    font-size: 26px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 24px;
+  }
+  @include respond(tablet) {
+    font-size: 22px;
+  }
+  @include respond(smalldevice) {
+    font-size: 20px;
+  }
+}
+
+.fs-29 {
+  font-size: 29px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-30 {
+  font-size: 30px !important;
+  @include respond(laptopbig) {
+    font-size: 28px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 26px;
+  }
+  @include respond(tablet) {
+    font-size: 22px;
+  }
+  @include respond(smalldevice) {
+    font-size: 20px;
+  }
+}
+
+.fs-31 {
+  font-size: 31px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-32 {
+  font-size: 32px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-33 {
+  font-size: 33px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-34 {
+  font-size: 34px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-35 {
+  font-size: 35px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-36 {
+  font-size: 36px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-37 {
+  font-size: 37px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-38 {
+  font-size: 38px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-39 {
+  font-size: 39px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-40 {
+  font-size: 40px !important;
+  @include respond(laptopbig) {
+    font-size: 17px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 15px;
+  }
+  @include respond(tablet) {
+    font-size: 13px;
+  }
+  @include respond(smalldevice) {
+    font-size: 11px;
+  }
+}
+
+.fs-45 {
+  font-size: 45px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-46 {
+  font-size: 46px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-49 {
+  font-size: 49px !important;
+  @include respond(laptopbig) {
+    font-size: 27px !important;
+  }
+  @include respond(laptopsmall) {
+    font-size: 25px;
+  }
+  @include respond(tablet) {
+    font-size: 23px;
+  }
+  @include respond(smalldevice) {
+    font-size: 21px;
+  }
+}
+
+.fs-icon {
+  font-size: 2rem !important;
+}

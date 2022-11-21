@@ -1,0 +1,42 @@
+.call-text-color {
+    color: #A46200 !important
+}
+
+.text-success {
+    color: #198C19 !important;
+    padding-top: 1px !important;
+}
+
+.measurement{
+    background: #D7F7E5 !important;
+    width: 95% !important;
+    @media (min-width: 768px) {
+       width: 40% !important;
+     }
+     @media (min-width: 1024px) {
+       width: 90% !important;
+     }
+     @media (min-width: 1440px) {
+       width: 60% !important;
+     }
+}
+
+.booking-footer {
+    background-color: $gray-100 !important;
+}
+
+.divider {
+    background: $gray-100 !important;
+}
+
+.address-form-group {
+    position: relative;
+    .map-icon {
+        cursor: pointer;
+        position: absolute;
+        z-index: 1000;
+        right: 15px;
+        top: 35px;
+    }
+}
+

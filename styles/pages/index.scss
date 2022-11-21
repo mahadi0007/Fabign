@@ -1,0 +1,66 @@
+.home-page {
+    // Action button container
+    .button-container {
+        background: $gray-400;
+        .btn {
+            width: 100% !important;
+            color: $gray-600 !important;
+            border: 0;
+            border-radius: 0;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            transition: 0.3s all;
+            &:hover {
+                color: $primary !important;
+            }
+        }
+        .custom-skew-btn-1 {
+            background: $secondary;
+            -webkit-clip-path: polygon(100% 0%, 100% 0, 98% 100%, 0 100%, 0% 50%, 0 1%);
+            clip-path: polygon(100% 0%, 99.8% 0, 98% 100%, 0 100%, 0% 50%, 0 0%);
+        }
+    }
+    // Category container
+    .category-container {
+        margin-top: 60px;
+        .category-card {
+            width: 50%;
+            float: left;
+            margin: auto;
+            border: 0;
+            padding: 2px;
+            text-align: center;
+            .card-body {
+                cursor: pointer;
+                transition: 0.3s all;
+                background: $gray-200;
+                &:hover {
+                    background: $primary;
+                }
+            }
+            @media (min-width: 576px) {
+                width: 33.33%;
+            }
+            @media (min-width: 768px) {
+                width: 25%;
+            }
+            @media (min-width: 992px) {
+                width: 20%;
+            }
+        }
+        @media (min-width: 768px) {
+            margin-top: 100px;
+        }
+    }
+    // how-works-container
+    .how-works-container {
+        margin-top: 60px;
+        @media (min-width: 768px) {
+            margin-top: 100px;
+        }
+    }
+}
+
+.first-section {
+    background-color: #adadb0;
+}

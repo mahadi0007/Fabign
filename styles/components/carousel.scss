@@ -1,0 +1,120 @@
+.custom-slider-container {
+    // Slider container
+    .slider-container {
+        overflow: hidden;
+        position: relative;
+        .carousel {
+            .carousel-indicators {
+                button {
+                    width: 10px;
+                    height: 10px;
+                    opacity: 0.6;
+                    border-radius: 50%;
+                    transition: 0.4s all;
+                    border: 0 !important;
+                    background-color: $primary !important;
+                }
+                .active {
+                    opacity: 1;
+                    width: 50px;
+                    border-radius: 15px !important;
+                }
+            }
+            .next-icon,
+            .prev-icon {
+                color: #fff !important;
+                background: $primary !important;
+                padding: 8px !important;
+                border-radius: 50% !important;
+            }
+        }
+        .slider-card {
+            .img {
+                cursor: pointer;
+                min-width: 100%;
+                min-height: 100%;
+            }
+            @media (max-width: 576px) {
+                height: 160px;
+            }
+            @media (min-width: 576px) {
+                height: 200px;
+            }
+            @media (min-width: 768px) {
+                height: 210px;
+            }
+            @media (min-width: 992px) {
+                height: 250px;
+            }
+            @media (min-width: 1280px) {
+                height: 355px;
+            }
+            @media (min-width: 1450px) {
+                height: 460px;
+            }
+            .contents {
+                position: relative;
+                top: -80%;
+                @media(max-width: 425px) {
+                    display: none;
+                    top: -92%;
+                }
+                @media (max-width: 380px) {
+                    display: none;
+                    top: -92%;
+                }
+                @media (max-width: 340px) {
+                    display: none;
+                }
+                @media (min-width: 576px) {
+                    // left: 7%;
+                    // display: none;
+                    top: -120%
+                }
+                @media (min-width: 768px) {
+                    top: -108%;
+                }
+                @media (min-width: 992px) {
+                    // left: 7%;
+                    top: -95%
+                }
+                @media (min-width: 1280px) {
+                    left: 7%;
+                    top: -87%;
+                }
+                @media (min-width: 1450px) {
+                    left: 0%;
+                    top: -80%;
+                }
+                @media (min-width: 1890px) {
+                    top: -95%;
+                }
+            }
+        }
+        @media (max-width: 992px) {
+            margin-bottom: 15px;
+        }
+    }
+    // Add container
+    .add-container {
+        .card {
+            overflow: hidden;
+            background: none;
+            border-radius: 0;
+            img {
+                cursor: pointer;
+                min-width: 100%;
+                min-height: 100%;
+            }
+            @media (min-width: 992px) {
+                height: 129px;
+            }
+            @media (min-width: 1280px) {
+                height: 144px;
+            }
+            @media (min-width: 1450px) {
+                height: 164px;
+            }
+        }
+    }
+}
