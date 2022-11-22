@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Icon from "react-icons-kit";
 import { grid, rotateCcw, settings, lock } from "react-icons-kit/feather";
-import { ic_lightbulb } from "react-icons-kit/md";
 import { GeneralImage } from "../image";
 import Logo from "../../public/assets/logowhite.png";
-import { clipboard } from "react-icons-kit/feather";
-import { ic_groups } from "react-icons-kit/md";
-import { ic_person } from "react-icons-kit/md";
-import { ic_payment } from "react-icons-kit/md";
 
 export const Sidebar = (props) => {
   const router = useRouter();

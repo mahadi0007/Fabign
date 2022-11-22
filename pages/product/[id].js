@@ -17,7 +17,7 @@ import { Text } from "../../components/text";
 import { Layout2 } from "../../components/layout/index";
 import { Container } from "../../components/container";
 import { PrimaryButton, SecondaryButton } from "../../components/button";
-import { Gallery } from "../../components/gallary";
+import { Gallery } from "../../components/gallery";
 import { ProductShow } from "../../components/product";
 import { Card } from "../../components/card";
 import { BreadCrumb } from "../../components/breadcrumb";

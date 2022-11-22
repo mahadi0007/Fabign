@@ -6,11 +6,11 @@ import { shoppingCart } from "react-icons-kit/feather";
 import { getDatabaseCart } from "../utils/utilities";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
 
 function MyApp({ Component, pageProps }) {
   const [count, setCount] = useState();
   const router = useRouter();
+
   // Handle cart list
   const handleCartList = async () => {
     const token = localStorage.getItem("token");

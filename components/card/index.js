@@ -36,17 +36,4 @@ const Body = (props) => {
   );
 };
 
-// Card footer
-const Footer = (props) => {
-  return (
-    <div
-      className={
-        props.className ? props.className + " card-footer" : "card-footer"
-      }
-    >
-      {props.children}
-    </div>
-  );
-};
-
-export const Card = { Simple, Header, Body, Footer };
+export const Card = { Simple, Header, Body };
