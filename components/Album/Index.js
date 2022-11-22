@@ -1,12 +1,13 @@
 import { Text } from "../text";
 import parse from "html-react-parser";
+import { Requests } from "../../utils/Http/index";
 
 export const Album = (props) => {
   const { banner, details, title } = props.item;
   return (
     <div className="card border-0">
       <img
-        src={`https://api.efgtailor.com${banner}`}
+        src={Requests.HostUrl + banner}
         className="card-img"
         alt="..."
         height={240}

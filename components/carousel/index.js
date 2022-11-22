@@ -13,7 +13,6 @@ export const CarouselDev = () => {
   const fetchCarouselData = useCallback(async () => {
     try {
       const response = await Requests.Slider.Index();
-      console.log(response);
       setSliders(response.data.body);
     } catch (error) {
       if (error) {

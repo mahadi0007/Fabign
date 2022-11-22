@@ -91,12 +91,9 @@ export const NavbarBaseTab = () => {
               {/* Others elements */}
               <div className="elements-container flex-fill d-none d-xl-block ms-5">
                 <div className="d-flex justify-content-betweeen">
-                  <div className="text-center px-2">
+                  <div className="text-center px-2 d-flex align-items-center">
                     <Link href={"/products"} className="text-decoration-none">
-                      <div
-                        className="d-flex align-items-center"
-                        style={{ cursor: "pointer" }}
-                      >
+                      <div className="" style={{ cursor: "pointer" }}>
                         <Text className="text-dark fw-bold fs-14 mb-0">
                           Shop
                         </Text>
