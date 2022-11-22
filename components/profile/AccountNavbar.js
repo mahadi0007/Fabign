@@ -28,7 +28,6 @@ export const AccountNavbar = forwardRef((props, ref) => {
     } else {
       localStorage.removeItem("token");
       localStorage.removeItem("userInfo");
-      localStorage.removeItem("storeId");
       router.push("/");
     }
   };

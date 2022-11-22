@@ -3,7 +3,7 @@ import NextNprogress from "nextjs-progressbar";
 import BackToTop from "../components/backToTop/index";
 import { Icon } from "react-icons-kit";
 import { shoppingCart } from "react-icons-kit/feather";
-import { getDatabaseCart, getODPDatabaseCart } from "../utils/utilities";
+import { getDatabaseCart } from "../utils/utilities";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -23,24 +23,8 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const ecommercedata = Object.keys(getDatabaseCart()).length;
-    const odpdata = Object.keys(getODPDatabaseCart()).length;
-    setCount(ecommercedata + odpdata);
+    setCount(ecommercedata);
   });
-
-  // useEffect(() => {
-  //   const newfunc = async () => {
-  //     const res = await axios.get("https://api.ipify.org/?format=json");
-  //     if (res.data && res.data.ip) {
-  //       const ip = res.data.ip;
-  //       console.log("ip");
-  //       console.log(ip);
-  //       const userdel = await axios.get(
-  //         `https://imageprocessor.efgtailor.com/getDetails/${ip}`
-  //       );
-  //     }
-  //   };
-  //   newfunc();
-  // });
 
   return (
     <>

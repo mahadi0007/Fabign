@@ -26,24 +26,6 @@ export const NavbarBase = () => {
   const window = useWindowSize();
   const [show, setShow] = useState(false);
 
-  const [data, setData] = useState([]);
-
-  // fetching main category
-  const fetchCategory = useCallback(async () => {
-    try {
-      const response = await Requests.LandingPage.Category();
-      if (response.status === 200 && response.data.data) {
-        setData(response.data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchCategory();
-  }, []);
-
   return (
     <div className="base-navbar shadow-sm px-lg-5">
       <Container.Fluid>
@@ -55,7 +37,7 @@ export const NavbarBase = () => {
                 <a href={"/"}>
                   <GeneralImage
                     src={Logo}
-                    alt="EFG Fashion logo."
+                    alt="Fabign logo."
                     x={window.width >= 992 ? 170 : 140}
                     y={window.width >= 992 ? 75 : 70}
                   />
@@ -106,21 +88,6 @@ export const NavbarBase = () => {
                       </Text>
                     </PrimaryButton>
                   </a>
-                  {data && data.length > 0 ? (
-                    <a href={`/studio/${data && data[0]._id}`}>
-                      <SecondaryButton className="me-3">
-                        <Text className="fs-13 fw-thin mb-0">
-                          Start Tailoring
-                        </Text>
-                      </SecondaryButton>
-                    </a>
-                  ) : (
-                    <SecondaryButton className="me-3">
-                      <Text className="fs-13 fw-thin mb-0">
-                        Start Tailoring
-                      </Text>
-                    </SecondaryButton>
-                  )}
 
                   <div className="text-center ms-3 pt-2">
                     <a href="#" className="text-decoration-none">
@@ -212,50 +179,6 @@ export const NavbarBase = () => {
                 </Text>
                 <Text className="text-muted fw-thin fs-12 mb-0">
                   Maeketplace Designs
-                </Text>
-              </div>
-              <div className="ms-auto pt-10">
-                <ChevronRight className="text-dark float-end" size={16} />
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="/studio"
-            className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10"
-          >
-            <div className="d-flex">
-              <div className="pt-1 pe-3">
-                <PenTool size={20} className="text-muted" />
-              </div>
-              <div>
-                <Text className="text-dark fw-bold fs-13 mb-0">
-                  Start Designing
-                </Text>
-                <Text className="text-muted fw-thin fs-12 mb-0">
-                  Start you own design
-                </Text>
-              </div>
-              <div className="ms-auto pt-10">
-                <ChevronRight className="text-dark float-end" size={16} />
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="/studio"
-            className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10"
-          >
-            <div className="d-flex">
-              <div className="pt-1 pe-3">
-                <Scissors size={20} className="text-muted" />
-              </div>
-              <div>
-                <Text className="text-dark fw-bold fs-13 mb-0">
-                  Start Tailoring
-                </Text>
-                <Text className="text-muted fw-thin fs-12 mb-0">
-                  Start you own tailoring
                 </Text>
               </div>
               <div className="ms-auto pt-10">

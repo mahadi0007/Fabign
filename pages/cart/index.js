@@ -11,18 +11,9 @@ import { BreadCrumb } from "../../components/breadcrumb";
 import { Container } from "../../components/container";
 import { Text } from "../../components/text";
 import { Cart } from "../../components/cartitem";
-import { StudioCart } from "../../components/studiocart";
-import { ODPCart } from "../../components/odpcart";
 import { BillingFrom } from "../../components/form/BillingForm";
 import { GMap } from "../../components/googlemap";
-import {
-  getDatabaseCart,
-  getODPDatabaseCart,
-  getStudioDatabaseCart,
-  removeFromDatabaseCart,
-  removeFromStudioDatabaseCart,
-  removeFromODPDatabaseCart,
-} from "../../utils/utilities";
+import { getDatabaseCart, removeFromDatabaseCart } from "../../utils/utilities";
 import { Requests } from "../../utils/Http";
 // image
 import EmptyCart from "../../public/assets/empty.svg";
@@ -33,8 +24,6 @@ const Home = () => {
   const [paymethod, setPaymethod] = useState("");
   const [price, setPrice] = useState(0);
   const [cartlen, setCartlen] = useState(0);
-  const [stcartlen, setStCartlen] = useState(0);
-  const [odpcartlen, setODPCartlen] = useState(0);
   const {
     register,
     handleSubmit,
@@ -55,9 +44,6 @@ const Home = () => {
   const [coupon, setCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
   const [couponPrice, setCouponPrice] = useState(0);
-  const [promoCode, setPromoCode] = useState("");
-  const [promoCodeApplied, setPromoCodeApplied] = useState(false);
-  const [promoCodePrice, setPromoCodePrice] = useState(0);
   const router = useRouter();
 
   const handleFullName = (text) => {
@@ -115,7 +101,6 @@ const Home = () => {
     } else {
       localStorage.removeItem("token");
       localStorage.removeItem("userInfo");
-      localStorage.removeItem("storeId");
       router.push("/");
     }
   };
@@ -126,27 +111,13 @@ const Home = () => {
 
   const getCart = useCallback(() => {
     const cartprice = 0;
-    const stprice = 0;
-    const odpprice = 0;
     Object.keys(getDatabaseCart()).map((key, index) => {
       const items = JSON.parse(key);
       const val = Object.values(getDatabaseCart())[index];
       cartprice += items.sellingPrice * val;
     });
-    Object.keys(getStudioDatabaseCart()).map((key, index) => {
-      const items = JSON.parse(key);
-      const val = Object.values(getStudioDatabaseCart())[index];
-      stprice += items.total_price * val;
-    });
-    Object.keys(getODPDatabaseCart()).map((key, index) => {
-      const items = JSON.parse(key);
-      const val = Object.values(getODPDatabaseCart())[index];
-      odpprice += items.sellingPrice * val;
-    });
-    setPrice(cartprice + stprice + odpprice + zoneValue);
+    setPrice(cartprice + zoneValue);
     setCartlen(Object.keys(getDatabaseCart()).length);
-    setStCartlen(Object.keys(getStudioDatabaseCart()).length);
-    setODPCartlen(Object.keys(getODPDatabaseCart()).length);
   }, [zoneValue]);
 
   // price calculation
@@ -160,23 +131,10 @@ const Home = () => {
     getCart();
   };
 
-  const handleRemoveCart2 = (item) => {
-    removeFromStudioDatabaseCart(item);
-    getCart();
-  };
-
-  const handleRemoveCart3 = (item) => {
-    removeFromODPDatabaseCart(item);
-    getCart();
-  };
-
   // order make
   const onSubmit = async (data) => {
     console.log("submit");
     const products = [];
-    const odpproducts = [];
-    const studioProducts = [];
-    const studioSampleFabric = [];
     Object.keys(getDatabaseCart()).map((key, index) => {
       const item = JSON.parse(key);
       products.push({
@@ -191,53 +149,7 @@ const Home = () => {
         variantion: item.variant,
       });
     });
-    Object.keys(getODPDatabaseCart()).map((key, index) => {
-      const item = JSON.parse(key);
-      odpproducts.push({
-        id: item._id,
-        title: item.title,
-        front: item.customFront,
-        back: item.customBack,
-        left: item.customLeft,
-        right: item.customRight,
-        productName: item.title,
-        quantity: Object.values(getODPDatabaseCart())[index],
-        size: item.size,
-        purchasePrice: item.sellingPrice,
-        subTotal:
-          item.sellingPrice * Object.values(getODPDatabaseCart())[index],
-        total: item.sellingPrice * Object.values(getODPDatabaseCart())[index],
-      });
-    });
-    Object.keys(getStudioDatabaseCart()).map((key, index) => {
-      const item = JSON.parse(key);
-      console.log("item");
-      console.log(item);
-      if (item.sample) {
-        studioSampleFabric.push({
-          id: item._id,
-          quantity: Object.values(getStudioDatabaseCart())[index],
-          purchasePrice: item.total_price,
-          subTotal:
-            item.total_price * Object.values(getStudioDatabaseCart())[index],
-          total:
-            item.total_price * Object.values(getStudioDatabaseCart())[index],
-        });
-      } else {
-        studioProducts.push({
-          name: item.title ? item.title : "",
-          image: item.src,
-          elements: item.element,
-          quantity: Object.values(getStudioDatabaseCart())[index],
-          purchasePrice: item.total_price,
-          subTotal:
-            item.total_price * Object.values(getStudioDatabaseCart())[index],
-          total:
-            item.total_price * Object.values(getStudioDatabaseCart())[index],
-          size: item.size,
-        });
-      }
-    });
+
     // make data
     try {
       const formData = {
@@ -249,9 +161,6 @@ const Home = () => {
         deliveryCharge: 30,
         paymentMethod: paymethod,
         products: products.length > 0 && products,
-        odpproducts: odpproducts.length > 0 && odpproducts,
-        studioProducts: studioProducts.length > 0 && studioProducts,
-        studioSampleFabric: studioSampleFabric.length > 0 && studioSampleFabric,
         subTotalPrice: price,
         isCouponApplied: false,
         orderStatus: [
@@ -268,11 +177,9 @@ const Home = () => {
         if (paymethod == "card") {
           router.push(response.data.message);
           localStorage.removeItem("efg/carts");
-          localStorage.removeItem("efg/odpcarts");
           localStorage.removeItem("orderId");
         } else {
           localStorage.removeItem("efg/carts");
-          localStorage.removeItem("efg/odpcarts");
           localStorage.removeItem("orderId");
           setOrderSucces({
             show: true,
@@ -297,7 +204,7 @@ const Home = () => {
       {/* Second Section Cart Page */}
       {/* First section BreadCrumb */}
       <Container.Simple className="mb-5">
-        {cartlen < 1 && stcartlen < 1 && odpcartlen < 1 ? (
+        {cartlen < 1 ? (
           <div className="col-lg-12">
             <div className="text-center">
               <Image src={EmptyCart} alt="empty" height={250} width={250} />
@@ -311,22 +218,6 @@ const Home = () => {
               {Object.keys(getDatabaseCart()).length ? (
                 <div className="bg-white border rounded">
                   <Cart getCart={getCart} handleRemoveCart={handleRemoveCart} />
-                </div>
-              ) : null}
-              {Object.keys(getStudioDatabaseCart()).length ? (
-                <div className="bg-white border rounded mt-3">
-                  <StudioCart
-                    getCart={getCart}
-                    handleRemoveCart={handleRemoveCart2}
-                  />
-                </div>
-              ) : null}
-              {Object.keys(getODPDatabaseCart()).length ? (
-                <div className="bg-white border rounded mt-3">
-                  <ODPCart
-                    getCart={getCart}
-                    handleRemoveCart={handleRemoveCart3}
-                  />
                 </div>
               ) : null}
               <div className="bg-white border rounded mt-4 p-2">
@@ -578,64 +469,6 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div className="mt-3">
-                  <Text className="fs-14">Have a promo code?</Text>
-                  <div className="d-flex justify-content-between">
-                    <input
-                      type=""
-                      placeholder="Promo Code"
-                      className="form-control shadow-none"
-                      value={promoCode}
-                      onChange={(event) => setPromoCode(event.target.value)}
-                    />
-                    <button
-                      className="btn btn-secondary shadow-none ms-2"
-                      onClick={async () => {
-                        const response = await Requests.PromoCode.FindPromoCode(
-                          {
-                            promo_code: promoCode,
-                          }
-                        );
-                        if (response.data.message == "Fetched promo code") {
-                          if (response.data.body.status !== "apporved") {
-                            Toastify.Error(
-                              "This promo code is not active now."
-                            );
-                          } else {
-                            for (const key of Object.keys(
-                              getODPDatabaseCart()
-                            )) {
-                              const items = JSON.parse(key);
-                              if (response.data.body.campaign == items._id) {
-                                if (promoCodeApplied) {
-                                  setPrice(
-                                    price +
-                                      promoCodePrice -
-                                      response.data.body.promo_amount
-                                  );
-                                  setPromoCodePrice(
-                                    response.data.body.promo_amount
-                                  );
-                                } else {
-                                  setPromoCodeApplied(true);
-                                  setPromoCodePrice(
-                                    response.data.body.promo_amount
-                                  );
-                                  setPrice(
-                                    price - response.data.body.promo_amount
-                                  );
-                                }
-                                break;
-                              }
-                            }
-                          }
-                        }
-                      }}
-                    >
-                      Apply
-                    </button>
-                  </div>
-                </div>
                 <div className="border-top">
                   <div className="d-flex justify-content-between mt-2">
                     <Text className="fs-14 text-decoration-underline text-primary">
@@ -691,9 +524,6 @@ const Home = () => {
                           console.log("response onCreatePayment");
                           console.log(response);
                           const products = [];
-                          const odpproducts = [];
-                          const studioProducts = [];
-                          const studioSampleFabric = [];
                           Object.keys(getDatabaseCart()).map((key, index) => {
                             const item = JSON.parse(key);
                             products.push({
@@ -712,73 +542,6 @@ const Home = () => {
                               variantion: item.variant,
                             });
                           });
-                          Object.keys(getODPDatabaseCart()).map(
-                            (key, index) => {
-                              const item = JSON.parse(key);
-                              odpproducts.push({
-                                id: item._id,
-                                title: item.title,
-                                front: item.customFront,
-                                back: item.customBack,
-                                left: item.customLeft,
-                                right: item.customRight,
-                                productName: item.title,
-                                quantity: Object.values(getODPDatabaseCart())[
-                                  index
-                                ],
-                                size: item.size,
-                                purchasePrice: item.sellingPrice,
-                                subTotal:
-                                  item.sellingPrice *
-                                  Object.values(getODPDatabaseCart())[index],
-                                total:
-                                  item.sellingPrice *
-                                  Object.values(getODPDatabaseCart())[index],
-                              });
-                            }
-                          );
-                          Object.keys(getStudioDatabaseCart()).map(
-                            (key, index) => {
-                              const item = JSON.parse(key);
-                              if (item.sample) {
-                                studioSampleFabric.push({
-                                  id: item._id,
-                                  quantity: Object.values(
-                                    getStudioDatabaseCart()
-                                  )[index],
-                                  purchasePrice: item.total_price,
-                                  subTotal:
-                                    item.total_price *
-                                    Object.values(getStudioDatabaseCart())[
-                                      index
-                                    ],
-                                  total:
-                                    item.total_price *
-                                    Object.values(getStudioDatabaseCart())[
-                                      index
-                                    ],
-                                });
-                              } else {
-                                studioProducts.push({
-                                  name: item.title ? item.title : "",
-                                  quantity: Object.values(
-                                    getStudioDatabaseCart()
-                                  )[index],
-                                  purchasePrice: item.total_price,
-                                  subTotal:
-                                    item.total_price *
-                                    Object.values(getStudioDatabaseCart())[
-                                      index
-                                    ],
-                                  total:
-                                    item.total_price *
-                                    Object.values(getStudioDatabaseCart())[
-                                      index
-                                    ],
-                                });
-                              }
-                            }
-                          );
                           const formData = {
                             name: fullName,
                             email: email,
@@ -788,12 +551,6 @@ const Home = () => {
                             deliveryCharge: 30,
                             paymentMethod: paymethod,
                             products: products.length > 0 && products,
-                            odpproducts: odpproducts.length > 0 && odpproducts,
-                            studioProducts:
-                              studioProducts.length > 0 && studioProducts,
-                            studioSampleFabric:
-                              studioSampleFabric.length > 0 &&
-                              studioSampleFabric,
                             subTotalPrice: price,
                             isCouponApplied: false,
                             orderStatus: [
@@ -811,12 +568,6 @@ const Home = () => {
                             localStorage.setItem(
                               "orderId",
                               orderResponse.data.body.order.orderId
-                            );
-                          }
-                          if (odpproducts.length > 0) {
-                            localStorage.setItem(
-                              "orderId",
-                              orderResponse.data.body.odpOrder.orderId
                             );
                           }
                           return response.data.body;
@@ -848,7 +599,6 @@ const Home = () => {
                             //   show: true,
                             // });
                             localStorage.removeItem("efg/carts");
-                            localStorage.removeItem("efg/odpcarts");
                           } else {
                             const orderResponse =
                               await Requests.Order.DeleteOrder();

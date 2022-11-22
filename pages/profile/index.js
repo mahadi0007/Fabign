@@ -15,29 +15,15 @@ import { Requests } from "../../utils/Http";
 const Index = () => {
   const router = useRouter();
   const [data, setData] = useState([]);
-  const [totalCampaign, setTotalCampaign] = useState(0);
   const [totalOrder, setTotalOrder] = useState(0);
-
-  const fetchCampaignData = async () => {
-    try {
-      const response = await Requests.Campaign.CountCampaign();
-      setTotalCampaign(response.data.body);
-    } catch (error) {
-      console.log("error");
-      console.log(error);
-    }
-  };
 
   const countOrderData = async () => {
     try {
       const response = await Requests.Order.GetOrder();
-      const odpResponse = await Requests.ODPOrder.GetOrder();
       setTotalOrder(
         [
           ...new Map(
-            [...response.data.body.order, ...odpResponse.data.body.order].map(
-              (item) => [item["orderId"], item]
-            )
+            [...response.data.body.order].map((item) => [item["orderId"], item])
           ).values(),
         ].length
       );
@@ -48,17 +34,13 @@ const Index = () => {
   };
 
   useEffect(() => {
-    fetchCampaignData();
-  }, []);
-
-  useEffect(() => {
     countOrderData();
   }, []);
 
   return (
     <div>
       <Head>
-        <title>EFG Tailor Profile</title>
+        <title>Fabign Profile</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AccountNavbar />
@@ -86,10 +68,7 @@ const Index = () => {
                       <Text className="card-text">
                         Personalized products for any event or ocation
                       </Text>
-                      <button
-                        onClick={() => router.push("/printondemand")}
-                        className="p-0 bg-dark border-0 rounded ps-2 pe-2 text-white pt-1 pb-1"
-                      >
+                      <button className="p-0 bg-dark border-0 rounded ps-2 pe-2 text-white pt-1 pb-1">
                         Start Designing Now
                       </button>
                     </div>
@@ -207,68 +186,6 @@ const Index = () => {
                     </Text>
                     <Text className="text-dark mb-0 fw-bolder fs-27">
                       {data.totalProfit ? data.totalProfit : 0}
-                    </Text>
-                  </Card.Body>
-                </Card.Simple>
-              </div>
-
-              {/* Total Campaign */}
-              <div className="col-6 col-md-3 my-mb-0 my-2">
-                <Card.Simple className="dashboard-card">
-                  <Card.Body className="shadow-sm text-center px-0 dashboard-card-body">
-                    <Text className="text-muted fw-bolder fs-16 mb-0 py-2">
-                      Total Campaign
-                    </Text>
-                    <Text className="text-dark mb-0 fw-bolder fs-27">
-                      {totalCampaign.totalCampaign}
-                    </Text>
-                  </Card.Body>
-                </Card.Simple>
-              </div>
-
-              {/* Pulished Campaign */}
-              <div className="col-6 col-md-3 my-mb-0 my-2">
-                <Card.Simple className="dashboard-card-blue">
-                  <Card.Body className="shadow-sm text-center px-0 dashboard-card-body-blue">
-                    <Text className="fw-bolder fs-16 mb-0 py-2">
-                      Published Campaign
-                    </Text>
-                    <Text className="mb-0 fw-bolder fs-27">
-                      {totalCampaign.publishedCampaign
-                        ? totalCampaign.publishedCampaign
-                        : 0}
-                    </Text>
-                  </Card.Body>
-                </Card.Simple>
-              </div>
-
-              {/* Block Campaign */}
-              <div className="col-6 col-md-3 my-mb-0 my-2">
-                <Card.Simple className="dashboard-card">
-                  <Card.Body className="shadow-sm text-center px-0 dashboard-card-body">
-                    <Text className="text-muted fw-bolder fs-16 mb-0 py-2">
-                      Block Campaign
-                    </Text>
-                    <Text className="text-dark mb-0 fw-bolder fs-27">
-                      {totalCampaign.blockedCampaign
-                        ? totalCampaign.blockedCampaign
-                        : 0}
-                    </Text>
-                  </Card.Body>
-                </Card.Simple>
-              </div>
-
-              {/* Pending Campaign */}
-              <div className="col-6 col-md-3 my-mb-0 my-2">
-                <Card.Simple className="dashboard-card">
-                  <Card.Body className="shadow-sm text-center px-0 dashboard-card-body">
-                    <Text className="text-muted fw-bolder fs-16 mb-0 py-2">
-                      Pending Campaign
-                    </Text>
-                    <Text className="text-dark mb-0 fw-bolder fs-27">
-                      {totalCampaign.pendingCampaign
-                        ? totalCampaign.pendingCampaign
-                        : 0}
                     </Text>
                   </Card.Body>
                 </Card.Simple>

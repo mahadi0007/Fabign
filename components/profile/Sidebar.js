@@ -22,7 +22,6 @@ export const Sidebar = (props) => {
       setLoading(false);
       localStorage.removeItem("token");
       localStorage.removeItem("userInfo");
-      localStorage.removeItem("storeId");
       router.push("/");
     }, 2000);
   };
@@ -46,72 +45,6 @@ export const Sidebar = (props) => {
         >
           <Icon icon={grid} size={16} />
           <span className="ms-2">Dashboard</span>
-        </button>
-
-        {/* Sotre */}
-        <button
-          type="button"
-          className={path === "/profile/store" ? "btn active" : "btn"}
-          onClick={() => router.push("/profile/store")}
-          disabled={props.storeWarning}
-        >
-          <Icon icon={clipboard} size={16} />
-          <span className="ms-2">Store</span>
-        </button>
-
-        {/* Campaign */}
-        <button
-          type="button"
-          className={path === "/profile/campaign" ? "btn active" : "btn"}
-          onClick={() => router.push("/profile/campaign")}
-          disabled={props.storeWarning}
-        >
-          <Icon icon={ic_lightbulb} size={16} />
-          <span className="ms-2">Campaign</span>
-        </button>
-
-        {/* Analytics */}
-        <button
-          type="button"
-          className={path === "/profile/analytics" ? "btn active" : "btn"}
-          onClick={() => router.push("/profile/analytics")}
-          disabled={props.storeWarning}
-        >
-          <Icon icon={ic_groups} size={16} />
-          <span className="ms-2">Analytics</span>
-        </button>
-
-        {/* Statistics */}
-        <button
-          type="button"
-          className={path === "/profile/statistics" ? "btn active" : "btn"}
-          onClick={() => router.push("/profile/statistics")}
-          disabled={props.storeWarning}
-        >
-          <Icon icon={ic_person} size={16} />
-          <span className="ms-2">Statistics</span>
-        </button>
-
-        {/* Payout */}
-        <button
-          type="button"
-          className={path === "/profile/payout" ? "btn active" : "btn"}
-          onClick={() => router.push("/profile/payout")}
-          disabled={props.storeWarning}
-        >
-          <Icon icon={ic_payment} size={16} />
-          <span className="ms-2">Payout</span>
-        </button>
-
-        {/* Promotions */}
-        <button
-          type="button"
-          className={path === "/profile/promotions" ? "btn active" : "btn"}
-          onClick={() => router.push("/profile/promotions")}
-          disabled={props.storeWarning}
-        >
-          <Icon icon={ic_payment} size={16} />
-          <span className="ms-2">Promotions</span>
         </button>
 
         {/* My Purchases */}

@@ -109,9 +109,7 @@ export const Footer = () => {
                 <Link href={`/about-us`}>About Us</Link>
                 <Link href={`/privacy-policy`}>Privacy Policy</Link>
                 <Link href={`/cookie-policy`}>Cookie Policy</Link>
-                <Link href={`/why-shop-on-efgfashion`}>
-                  Why Shop on EFG Fashion
-                </Link>
+                <Link href={`/why-shop-on-efgfashion`}>Why Shop on Fabign</Link>
                 <Link href={`/terms-and-conditions`}>Terms Conditions</Link>
                 <Link href={`/faq`}>FAQs</Link>
                 <Link href="#">Seller Login</Link>
@@ -136,9 +134,9 @@ export const Footer = () => {
             <div>
               <h6>Subscribe now</h6>
               <p>
-                Love EFG Fashion? Subscribe to our newsletter to get instant
-                update when we add a product or start a campaign. You may also
-                get coupons.
+                Love Fabign? Subscribe to our newsletter to get instant update
+                when we add a product or start a campaign. You may also get
+                coupons.
               </p>
 
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -254,8 +252,8 @@ export const Footer = () => {
               <div className="d-lg-flex">
                 <div className="content">
                   <p>
-                    Copyright @ 2020-{new Date().getFullYear()} EFG Fashion
-                    Limited. Design & developed by{" "}
+                    Copyright @ 2020-{new Date().getFullYear()} Fabign Limited.
+                    Design & developed by{" "}
                     <span
                       onClick={() => router.push("https://techjb.net/")}
                       className="fw-bold"

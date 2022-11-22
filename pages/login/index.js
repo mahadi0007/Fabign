@@ -25,10 +25,6 @@ export default function Home() {
       const response = await Requests.Authentication.Login(data);
       if (response.data.statusCode === 200) {
         localStorage.setItem("token", response.data.body.token);
-        const storeResponse = await Requests.Store.GetStore();
-        if (storeResponse.data.message == "Found stores") {
-          localStorage.setItem("storeId", storeResponse.data.body._id);
-        }
         Toastify.Success("Successfully Logged In");
         router.push(`/`);
       } else {

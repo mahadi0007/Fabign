@@ -24,12 +24,9 @@ const MyPurchasesIndex = () => {
     try {
       setLoading(true);
       const response = await Requests.Order.GetOrder();
-      const odpResponse = await Requests.ODPOrder.GetOrder();
       let orderProduct = [
         ...new Map(
-          [...response.data.body.order, ...odpResponse.data.body.order].map(
-            (item) => [item["orderId"], item]
-          )
+          [...response.data.body.order].map((item) => [item["orderId"], item])
         ).values(),
       ];
       console.log("order 1");
@@ -49,29 +46,7 @@ const MyPurchasesIndex = () => {
           ...oldArray,
           { ...order.products[0], orderId: order._id },
         ]);
-        // order.products.forEach((product) => {
-        //   // console.log(product);
-        //   setData((oldArray) => [...oldArray, product]);
-        // });
       });
-      // if (response && response.status === 200) {
-      //   response.data.body.order.forEach((order) => {
-      //     console.log(order);
-      //     order.products.forEach((product) => {
-      //       // console.log(product);
-      //       setData((oldArray) => [...oldArray, product]);
-      //     });
-      //   });
-      // }
-      // if (odpResponse && odpResponse.status === 200) {
-      //   odpResponse.data.body.order.forEach((order) => {
-      //     console.log(order);
-      //     order.products.forEach((product) => {
-      //       // console.log(product);
-      //       setData((oldArray) => [...oldArray, product]);
-      //     });
-      //   });
-      // }
       setLoading(false);
     } catch (error) {
       if (error) {
@@ -103,16 +78,6 @@ const MyPurchasesIndex = () => {
         formData.append("rating", data.rating);
         formData.append("review", data.review);
         const response = await Requests.Rating.Store(formData);
-        if (response.data) {
-          Toastify.Success("Thanks for your valuable feedback");
-        }
-      }
-      if (review.product.id?.front) {
-        const formData = new FormData();
-        formData.append("campaign", review.product.id._id);
-        formData.append("rating", data.rating);
-        formData.append("review", data.review);
-        const response = await Requests.CampaignRating.Store(formData);
         if (response.data) {
           Toastify.Success("Thanks for your valuable feedback");
         }

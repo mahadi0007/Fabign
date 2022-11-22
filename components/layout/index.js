@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { NavbarBase } from "../navbar/index";
-import { NavbarBaseTab, TopBar, MegaMenu } from "../navbar/navbar";
+import { NavbarBaseTab, TopBar } from "../navbar/navbar";
 import { Footer } from "../footer";
 
 export const Layout = (props) => {
@@ -26,7 +26,6 @@ export const Layout2 = (props) => {
       </Head>
       {/* <TopBar /> */}
       <NavbarBaseTab />
-      <MegaMenu />
 
       <main>{props.children}</main>
       <Footer />

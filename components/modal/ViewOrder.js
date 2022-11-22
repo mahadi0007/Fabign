@@ -18,7 +18,6 @@ import moment from "moment";
 
 export const ViewOrder = (props) => {
   const [item, setItem] = useState({});
-  const [odpItem, setOdpItem] = useState({});
   const [isLoading, setLoading] = useState(true);
 
   // Fetch data
@@ -26,12 +25,6 @@ export const ViewOrder = (props) => {
     const eResponse = await Requests.Order.ShowOrder(props.id);
     if (eResponse && eResponse.data) {
       setItem(eResponse.data.body);
-    }
-    const odpResponse = await Requests.ODPOrder.ShowOrder(props.id);
-    console.log("odpResponse");
-    console.log(odpResponse);
-    if (odpResponse && odpResponse.data) {
-      setOdpItem(odpResponse.data.body);
     }
     setLoading(false);
   }, [props.id]);
@@ -305,177 +298,183 @@ export const ViewOrder = (props) => {
       <Modal.Body className="p-4">
         <div>
           <Container.Row>
-            {item.orderStatus && (<ul className="progress-tracker progress-tracker--text progress-tracker--center">
-              <li
-                className={
-                  item.orderStatus.some((el) => el.status === "Order Received")
-                    ? "progress-step is-complete"
-                    : "progress-step"
-                }
-              >
-                <div className="progress-marker" style={{ margin: "0 auto" }}>
-                  <Check size={20} />
-                </div>
-                <div className="progress-text">
-                  <p className="progress-title fw-bold">Order received</p>
-                  {item.orderStatus.some(
-                    (el) => el.status === "Order Received"
-                  ) && (
-                    <p>
-                      {moment(
-                        item.orderStatus.find(
-                          (el) => el.status === "Order Received"
-                        ).time
-                      ).format("hh:mm A, DD MMM YYYY")}
-                    </p>
-                  )}
-                </div>
-              </li>
-
-              <li
-                className={
-                  item.orderStatus.some(
-                    (el) => el.status === "Processing Order"
-                  )
-                    ? "progress-step is-complete"
-                    : "progress-step"
-                }
-              >
-                <div className="progress-marker" style={{ margin: "0 auto" }}>
-                  <Check size={20} />
-                </div>
-                <div className="progress-text">
-                  <p className="progress-title fw-bold">Processing Order</p>
-                  {item.orderStatus.some(
-                    (el) => el.status === "Processing Order"
-                  ) && (
-                    <p>
-                      {moment(
-                        item.orderStatus.find(
-                          (el) => el.status === "Processing Order"
-                        ).time
-                      ).format("hh:mm A, DD MMM YYYY")}
-                    </p>
-                  )}
-                </div>
-              </li>
-
-              {/* <li className="progress-step is-active" aria-current="step"> */}
-              <li
-                className={
-                  item.orderStatus.some(
-                    (el) => el.status === "Handed over to Courier"
-                  )
-                    ? "progress-step is-complete"
-                    : "progress-step"
-                }
-                aria-current="step"
-              >
-                <div className="progress-marker" style={{ margin: "0 auto" }}>
-                  <Check size={20} />
-                </div>
-                <div className="progress-text">
-                  <p className="progress-title fw-bold">Out for Delivery</p>
-                  {item.orderStatus.some(
-                    (el) => el.status === "Handed over to Courier"
-                  ) && (
-                    <p>
-                      {moment(
-                        item.orderStatus.find(
-                          (el) => el.status === "Handed over to Courier"
-                        ).time
-                      ).format("hh:mm A, DD MMM YYYY")}
-                    </p>
-                  )}
-                </div>
-              </li>
-
-              <li
-                className={
-                  item.orderStatus.some(
-                    (el) => el.status === "Delivery by Pathao"
-                  )
-                    ? "progress-step is-complete"
-                    : "progress-step"
-                }
-              >
-                <div className="progress-marker" style={{ margin: "0 auto" }}>
-                  <Check size={20} />
-                </div>
-                <div className="progress-text">
-                  <p className="progress-title fw-bold">Delivery by Pathao</p>
-                  {item.orderStatus.some(
-                    (el) => el.status === "Delivery by Pathao"
-                  ) && (
-                    <>
+            {item.orderStatus && (
+              <ul className="progress-tracker progress-tracker--text progress-tracker--center">
+                <li
+                  className={
+                    item.orderStatus.some(
+                      (el) => el.status === "Order Received"
+                    )
+                      ? "progress-step is-complete"
+                      : "progress-step"
+                  }
+                >
+                  <div className="progress-marker" style={{ margin: "0 auto" }}>
+                    <Check size={20} />
+                  </div>
+                  <div className="progress-text">
+                    <p className="progress-title fw-bold">Order received</p>
+                    {item.orderStatus.some(
+                      (el) => el.status === "Order Received"
+                    ) && (
                       <p>
                         {moment(
                           item.orderStatus.find(
-                            (el) => el.status === "Delivery by Pathao"
+                            (el) => el.status === "Order Received"
                           ).time
                         ).format("hh:mm A, DD MMM YYYY")}
                       </p>
-                      <p>#DE230622734HCC</p>
-                    </>
-                  )}
-                </div>
-              </li>
+                    )}
+                  </div>
+                </li>
 
-              <li
-                className={
-                  item.orderStatus.some(
-                    (el) => el.status === "Delivery by RedX"
-                  )
-                    ? "progress-step is-complete"
-                    : "progress-step d-none"
-                }
-              >
-                <div className="progress-marker" style={{ margin: "0 auto" }}>
-                  <Check size={20} />
-                </div>
-                <div className="progress-text">
-                  <p className="progress-title fw-bold">Delivery by RedX</p>
-                  {item.orderStatus.some(
-                    (el) => el.status === "Delivery by RedX"
-                  ) && (
-                    <>
+                <li
+                  className={
+                    item.orderStatus.some(
+                      (el) => el.status === "Processing Order"
+                    )
+                      ? "progress-step is-complete"
+                      : "progress-step"
+                  }
+                >
+                  <div className="progress-marker" style={{ margin: "0 auto" }}>
+                    <Check size={20} />
+                  </div>
+                  <div className="progress-text">
+                    <p className="progress-title fw-bold">Processing Order</p>
+                    {item.orderStatus.some(
+                      (el) => el.status === "Processing Order"
+                    ) && (
                       <p>
                         {moment(
                           item.orderStatus.find(
-                            (el) => el.status === "Delivery by RedX"
+                            (el) => el.status === "Processing Order"
                           ).time
                         ).format("hh:mm A, DD MMM YYYY")}
                       </p>
-                      <p>#DE230622734HCC</p>
-                    </>
-                  )}
-                </div>
-              </li>
+                    )}
+                  </div>
+                </li>
 
-              <li
-                className={
-                  item.orderStatus.some((el) => el.status === "Delivered")
-                    ? "progress-step is-complete"
-                    : "progress-step"
-                }
-              >
-                <div className="progress-marker" style={{ margin: "0 auto" }}>
-                  <Check size={20} />
-                </div>
-                <div className="progress-text">
-                  <p className="progress-title fw-bold">Complete Order</p>
-                  {item.orderStatus.some((el) => el.status === "Delivered") && (
-                    <p>
-                      {moment(
-                        item.orderStatus.find((el) => el.status === "Delivered")
-                          .time
-                      ).format("hh:mm A, DD MMM YYYY")}
-                    </p>
-                  )}
-                </div>
-              </li>
-            </ul>)}
-            
+                {/* <li className="progress-step is-active" aria-current="step"> */}
+                <li
+                  className={
+                    item.orderStatus.some(
+                      (el) => el.status === "Handed over to Courier"
+                    )
+                      ? "progress-step is-complete"
+                      : "progress-step"
+                  }
+                  aria-current="step"
+                >
+                  <div className="progress-marker" style={{ margin: "0 auto" }}>
+                    <Check size={20} />
+                  </div>
+                  <div className="progress-text">
+                    <p className="progress-title fw-bold">Out for Delivery</p>
+                    {item.orderStatus.some(
+                      (el) => el.status === "Handed over to Courier"
+                    ) && (
+                      <p>
+                        {moment(
+                          item.orderStatus.find(
+                            (el) => el.status === "Handed over to Courier"
+                          ).time
+                        ).format("hh:mm A, DD MMM YYYY")}
+                      </p>
+                    )}
+                  </div>
+                </li>
+
+                <li
+                  className={
+                    item.orderStatus.some(
+                      (el) => el.status === "Delivery by Pathao"
+                    )
+                      ? "progress-step is-complete"
+                      : "progress-step"
+                  }
+                >
+                  <div className="progress-marker" style={{ margin: "0 auto" }}>
+                    <Check size={20} />
+                  </div>
+                  <div className="progress-text">
+                    <p className="progress-title fw-bold">Delivery by Pathao</p>
+                    {item.orderStatus.some(
+                      (el) => el.status === "Delivery by Pathao"
+                    ) && (
+                      <>
+                        <p>
+                          {moment(
+                            item.orderStatus.find(
+                              (el) => el.status === "Delivery by Pathao"
+                            ).time
+                          ).format("hh:mm A, DD MMM YYYY")}
+                        </p>
+                        <p>#DE230622734HCC</p>
+                      </>
+                    )}
+                  </div>
+                </li>
+
+                <li
+                  className={
+                    item.orderStatus.some(
+                      (el) => el.status === "Delivery by RedX"
+                    )
+                      ? "progress-step is-complete"
+                      : "progress-step d-none"
+                  }
+                >
+                  <div className="progress-marker" style={{ margin: "0 auto" }}>
+                    <Check size={20} />
+                  </div>
+                  <div className="progress-text">
+                    <p className="progress-title fw-bold">Delivery by RedX</p>
+                    {item.orderStatus.some(
+                      (el) => el.status === "Delivery by RedX"
+                    ) && (
+                      <>
+                        <p>
+                          {moment(
+                            item.orderStatus.find(
+                              (el) => el.status === "Delivery by RedX"
+                            ).time
+                          ).format("hh:mm A, DD MMM YYYY")}
+                        </p>
+                        <p>#DE230622734HCC</p>
+                      </>
+                    )}
+                  </div>
+                </li>
+
+                <li
+                  className={
+                    item.orderStatus.some((el) => el.status === "Delivered")
+                      ? "progress-step is-complete"
+                      : "progress-step"
+                  }
+                >
+                  <div className="progress-marker" style={{ margin: "0 auto" }}>
+                    <Check size={20} />
+                  </div>
+                  <div className="progress-text">
+                    <p className="progress-title fw-bold">Complete Order</p>
+                    {item.orderStatus.some(
+                      (el) => el.status === "Delivered"
+                    ) && (
+                      <p>
+                        {moment(
+                          item.orderStatus.find(
+                            (el) => el.status === "Delivered"
+                          ).time
+                        ).format("hh:mm A, DD MMM YYYY")}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              </ul>
+            )}
           </Container.Row>
 
           {/* Order Creator Info Container */}
@@ -867,54 +866,13 @@ export const ViewOrder = (props) => {
             </Container.Column>
           </Container.Row>
 
-          {/* Ordered & Canceled Products */}
-          <Container.Row>
-            {/* Ordered Products */}
-            <Container.Column className="col-padding">
-              <Card.Simple className="border-0">
-                <Card.Header className="bg-white border-0 pl-3 pt-3 pb-0">
-                  <h6 className="mb-0">Ordered ODP Products</h6>
-                </Card.Header>
-                <Card.Body className="p-0">
-                  <DataTable
-                    fixedHeader
-                    fixedHeaderScrollHeight="580px"
-                    customStyles={customStyles}
-                    columns={columns}
-                    data={odpItem.products}
-                    loading={isLoading}
-                  />
-                </Card.Body>
-              </Card.Simple>
-            </Container.Column>
-
-            {/* Canceled Products */}
-            <Container.Column className="col-padding">
-              <Card.Simple className="border-0">
-                <Card.Header className="bg-white border-0 pl-3 pt-3 pb-0">
-                  <h6 className="mb-0">Canceled ODP Products</h6>
-                </Card.Header>
-                <Card.Body className="p-0">
-                  <DataTable
-                    fixedHeader
-                    fixedHeaderScrollHeight="580px"
-                    customStyles={customStyles}
-                    columns={canceledProductsColumns}
-                    data={odpItem.canceledProducts}
-                    loading={isLoading}
-                  />
-                </Card.Body>
-              </Card.Simple>
-            </Container.Column>
-          </Container.Row>
-
           <Container.Simple className="d-none" id="test">
             {/* <Container.Simple id="test"> */}
             <Container.Row>
               <Container.Column className="col-sm-6 col-lg-6">
                 <GeneralImage
                   src={Logo}
-                  alt="EFG Fashion logo."
+                  alt="Fabign logo."
                   x={window.width >= 992 ? 170 : 140}
                   y={window.width >= 992 ? 75 : 70}
                 />
@@ -930,7 +888,7 @@ export const ViewOrder = (props) => {
                 <h4 className="fw-bold fst-italic">INVOICE# 39610</h4>
                 <GeneralImage
                   src={Barcode}
-                  alt="EFG Fashion Barcode."
+                  alt="Fabign Barcode."
                   x={window.width >= 992 ? 170 : 140}
                   y={window.width >= 992 ? 75 : 70}
                 />

@@ -113,7 +113,7 @@ const ProductsIndex = () => {
   return (
     <div>
       <Head>
-        <title>EFG Tailor Profile</title>
+        <title>FabignTailor Profile</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AccountNavbar ref={accountNavbarRef} />

@@ -1,38 +1,27 @@
 import { useState, useEffect, useCallback } from "react";
 import { BsHeadset } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
 import {
   ArrowRightCircle,
-  Archive,
-  Award,
   ChevronRight,
   LogIn,
   LogOut,
   Menu,
-  Printer,
-  Search,
-  ShoppingBag,
   Unlock,
   User,
   Users,
-  ArrowDown,
-  ArrowUp,
 } from "react-feather";
 import {
   Navbar,
   Nav,
   DropdownButton,
-  Container as BootstrapContainer,
   Dropdown,
   NavDropdown,
-  Col,
-  Row,
 } from "react-bootstrap";
 import { Text } from "../text";
 import { GeneralImage } from "../image";
 import { Container } from "../container";
-import { SecondaryButton, PrimaryButton, GrayButton } from "../button";
+import { GrayButton } from "../button";
 import { useWindowSize } from "../window/windowSize";
 import { Drawer } from "../drawer";
 import Logo from "../../public/assets/logo.svg";
@@ -40,15 +29,9 @@ import LogoWhite from "../../public/assets/logowhite.png";
 import Busket from "../../public/assets/navitems/busket_icon.svg";
 import Image from "next/image";
 import { useRouter } from "next/dist/client/router";
-import {
-  getDatabaseCart,
-  getStudioDatabaseCart,
-  getODPDatabaseCart,
-} from "../../utils/utilities";
+import { getDatabaseCart } from "../../utils/utilities";
 import SearchComponent from "../search/index";
 import { Requests } from "../../utils/Http";
-import StartTailor from "../../public/assets/callfortailor.svg";
-import CallForTailor from "../../public/assets/starttailor.svg";
 import Link from "next/link";
 
 // Base navbar
@@ -58,49 +41,20 @@ export const NavbarBaseTab = () => {
   const [price, setPrice] = useState(0);
   const [isLoggedin, setisLoggedIn] = useState(false);
 
-  const [data, setData] = useState([]);
   const router = useRouter();
-  // fetching main category
-  const fetchCategory = useCallback(async () => {
-    try {
-      const response = await Requests.LandingPage.Category();
-      if (response.status === 200 && response.data.data) {
-        setData(response.data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchCategory();
-  }, []);
 
   // price calculation
   useEffect(() => {
     const cartprice = 0;
-    const stprice = 0;
-    const odpprice = 0;
     Object.keys(getDatabaseCart()).map((key, index) => {
       const items = JSON.parse(key);
       const val = Object.values(getDatabaseCart())[index];
       cartprice += items.sellingPrice * val;
     });
-    Object.keys(getStudioDatabaseCart()).map((key, index) => {
-      const items = JSON.parse(key);
-      const val = Object.values(getStudioDatabaseCart())[index];
-      stprice += items.total_price * val;
-    });
-    Object.keys(getODPDatabaseCart()).map((key, index) => {
-      const items = JSON.parse(key);
-      const val = Object.values(getODPDatabaseCart())[index];
-      odpprice += items.sellingPrice * val;
-    });
-    setPrice(cartprice + stprice + odpprice);
+    setPrice(cartprice);
   });
 
   const handleLogOut = () => {
-    localStorage.removeItem("storeId");
     localStorage.removeItem("userInfo");
     localStorage.removeItem("token");
     router.push("/login");
@@ -127,7 +81,7 @@ export const NavbarBaseTab = () => {
                     role="button"
                     src={Logo.src}
                     className={"img-fluid"}
-                    alt="EFG Fashion logo."
+                    alt="Fabign logo."
                     width={window.width >= 992 ? 170 : 140}
                     height={window.width >= 992 ? 75 : 70}
                   />
@@ -137,22 +91,21 @@ export const NavbarBaseTab = () => {
               {/* Others elements */}
               <div className="elements-container flex-fill d-none d-xl-block ms-5">
                 <div className="d-flex justify-content-betweeen">
-                  {/* <div className="text-center px-2">
+                  <div className="text-center px-2">
                     <Link href={"/products"} className="text-decoration-none">
-                      <Text className="text-dark fw-bold fs-14 mb-0">Shop</Text>
-                      <Text className="text-muted fw-thin fs-12 mb-0">
-                        Choose Your Design
-                      </Text>
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ cursor: "pointer" }}
+                      >
+                        <Text className="text-dark fw-bold fs-14 mb-0">
+                          Shop
+                        </Text>
+                        {/* <Text className="text-muted fw-thin fs-12 mb-0">
+                          Choose Your Design
+                        </Text> */}
+                      </div>
                     </Link>
-                  </div> */}
-
-                  {/* <div className="text-center px-2">
-                    <Link href={"/freelancer"} className="text-decoration-none">
-                      <Text className="text-dark fw-bold fs-14 mb-0">
-                        Design Studio
-                      </Text>
-                    </Link>
-                  </div> */}
+                  </div>
 
                   {/* search bar */}
                   <div className="text-center w-50 search-container flex-fill">
@@ -460,278 +413,4 @@ export const TopBar = () => {
   } else {
     return null;
   }
-};
-
-export const MegaMenu = () => {
-  const router = useRouter();
-  return (
-    <div
-      className="d-flex flex-row align-items-center justify-content-evenly px-5 bg-white"
-      style={{ marginTop: "-1rem", marginBottom: "-1rem" }}
-    >
-      <div>
-        <NavDropdown
-          className="py-2 align-text-top text-dark text-center"
-          title={
-            <div className="text-white bg-primary p-3">
-              <GiHamburgerMenu className="me-1" size={15} />
-              All departments
-            </div>
-          }
-        >
-          <BootstrapContainer className="integrationsNav pt-0 mt-0">
-            <Row>
-              <Col xs="12" md="6" className="text-start border-end">
-                <p
-                  className="px-3"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  Next Day Delivery
-                </p>
-                <p
-                  className="px-3"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  Moonsoon Sale Offer
-                </p>
-                <p
-                  className="px-3"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  Load Shedding Free Zone
-                </p>
-                <div
-                  className="px-3 d-flex align-items-center justify-content-between"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  <p>Walton Summer Foot</p>
-                </div>
-                <div
-                  className="px-3 d-flex align-items-center justify-content-between"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  <p>Walton Plaza</p>
-                </div>
-                <Dropdown.Divider className="d-lg-none" />
-              </Col>
-
-              <Col xs="12" md="6" className="text-start border-end">
-                <p
-                  className="px-3"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  Next Day Delivery
-                </p>
-                <p
-                  className="px-3"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  Moonsoon Sale Offer
-                </p>
-                <p
-                  className="px-3"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  Load Shedding Free Zone
-                </p>
-                <div
-                  className="px-3 d-flex align-items-center justify-content-between"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  <p>Walton Summer Foot</p>
-                </div>
-                <div
-                  className="px-3 d-flex align-items-center justify-content-between"
-                  onMouseOver={(e) => {
-                    e.target.classList.add("bg-primary", "text-white");
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.classList.remove("bg-primary", "text-white");
-                  }}
-                >
-                  <p>Walton Plaza</p>
-                </div>
-                <Dropdown.Divider className="d-lg-none" />
-              </Col>
-            </Row>
-          </BootstrapContainer>
-        </NavDropdown>
-      </div>
-
-      <div
-        className={router.pathname == "/" ? "bg-primary p-3 text-light" : "p-3"}
-      >
-        <Link href={"/"}>
-          <a
-            className={
-              router.pathname == "/"
-                ? "active text-decoration-none text-light fw-bold"
-                : "text-decoration-none text-dark"
-            }
-          >
-            Home
-          </a>
-        </Link>
-      </div>
-
-      <div
-        className={
-          router.pathname == "/products" && "bg-primary p-3 text-light"
-        }
-      >
-        <Link href={"/products"}>
-          <a
-            className={
-              router.pathname == "/products"
-                ? "active text-decoration-none text-light fw-bold"
-                : "text-decoration-none text-dark"
-            }
-          >
-            Shop
-          </a>
-        </Link>
-      </div>
-
-      <div
-        className={router.pathname == "/blog" && "bg-primary p-3 text-light"}
-      >
-        <Link href={"/blog"}>
-          <a
-            className={
-              router.pathname == "/blog"
-                ? "active text-decoration-none text-light fw-bold"
-                : "text-decoration-none text-dark"
-            }
-          >
-            Blog
-          </a>
-        </Link>
-      </div>
-
-      <div
-        className={router.pathname == "/blog" && "bg-primary p-3 text-light"}
-      >
-        <Link href={"/blog"}>
-          <a
-            className={
-              router.pathname == "/blog"
-                ? "active text-decoration-none text-light fw-bold"
-                : "text-decoration-none text-dark"
-            }
-          >
-            Trusted By
-          </a>
-        </Link>
-      </div>
-
-      <div
-        className={router.pathname == "/blog" && "bg-primary p-3 text-light"}
-      >
-        <Link href={"/blog"}>
-          <a
-            className={
-              router.pathname == "/blog"
-                ? "active text-decoration-none text-light fw-bold"
-                : "text-decoration-none text-dark"
-            }
-          >
-            About Us
-          </a>
-        </Link>
-      </div>
-
-      <div
-        className={router.pathname == "/blog" && "bg-primary p-3 text-light"}
-      >
-        <Link href={"/blog"}>
-          <a
-            className={
-              router.pathname == "/blog"
-                ? "active text-decoration-none text-light fw-bold"
-                : "text-decoration-none text-dark"
-            }
-          >
-            Contact Us
-          </a>
-        </Link>
-      </div>
-
-      <div
-        className={router.pathname == "/blog" && "bg-primary p-3 text-light"}
-      >
-        <Link href={"/blog"}>
-          <a
-            className={
-              router.pathname == "/blog"
-                ? "active text-decoration-none text-light fw-bold"
-                : "text-decoration-none text-dark"
-            }
-          >
-            Delivery Rules
-          </a>
-        </Link>
-      </div>
-
-      <div
-        className={router.pathname == "/blog" && "bg-primary p-3 text-light"}
-      >
-        <Link href={"/blog"}>
-          <a
-            className={
-              router.pathname == "/blog"
-                ? "active text-decoration-none text-light fw-bold"
-                : "text-decoration-none text-dark"
-            }
-          >
-            FAQs
-          </a>
-        </Link>
-      </div>
-    </div>
-  );
 };

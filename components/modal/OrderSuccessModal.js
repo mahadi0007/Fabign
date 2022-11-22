@@ -1,29 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { X } from "react-feather";
 import { Modal } from "react-bootstrap";
-import { DangerButton, PrimaryButton } from "../button";
+import { DangerButton } from "../button";
 import { Text } from "../text";
 import router from "next/router";
-import { Requests } from "../../utils/Http";
 
 export const OrderSuccessModal = (props) => {
-  const [data, setData] = useState([]);
-
-  // fetching main category
-  const fetchCategory = useCallback(async () => {
-    try {
-      const response = await Requests.LandingPage.Category();
-      if (response.status === 200 && response.data.data) {
-        setData(response.data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchCategory();
-  }, []);
   return (
     <Modal
       show={props.show}
@@ -69,24 +51,6 @@ export const OrderSuccessModal = (props) => {
             If you want, you can tailor your own clothes and Become a Freelance
             designer.
           </Text>
-        </div>
-        <div
-          className="text-center py-4 rounded-bottom"
-          style={{ backgroundColor: "#e9ecef" }}
-        >
-          <PrimaryButton
-            className="py-1 px-2"
-            onClick={() => router.push(`/studio/${data && data[0]._id}`)}
-          >
-            <Text className="fs-15 mb-0">Start Tailoring</Text>
-          </PrimaryButton>
-
-          <PrimaryButton
-            className="btn-dark-blue py-1 px-2 ms-3 border-0"
-            onClick={() => router.push("/print-on-demand")}
-          >
-            <Text className="fs-15 mb-0">Start Designing</Text>
-          </PrimaryButton>
         </div>
       </Modal.Body>
     </Modal>
