@@ -26,7 +26,7 @@ export const CircleImage = (props) => {
                 overflow: "hidden"
             }}
         >
-            <Image
+            <img
                 src={props.src}
                 alt={props.alt}
                 style={{

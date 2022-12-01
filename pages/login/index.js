@@ -1,4 +1,4 @@
-import { Layout2 } from "../../components/layout/index";
+import { Layout } from "../../components/layout/index";
 import { useRouter } from "next/dist/client/router";
 import { Container } from "../../components/container";
 import { Text } from "../../components/text";
@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   return (
-    <Layout2 title="Login">
+    <Layout title="Login">
       {/* First section BreadCrumb */}
       <Container.Simple>
         <BreadCrumb />
@@ -99,6 +99,6 @@ export default function Home() {
           </div>
         </Container.Column>
       </Container.Simple>
-    </Layout2>
+    </Layout>
   );
 }

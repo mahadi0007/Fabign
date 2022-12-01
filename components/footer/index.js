@@ -35,7 +35,11 @@ toast.configure({
 });
 
 export const Footer = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [isLoading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
@@ -72,13 +76,13 @@ export const Footer = () => {
                 <p style={{ marginBottom: "0" }}>
                   <a href="tel:+8809612-000123">
                     <Icon icon={phone} size={18} className="me-2" />
-                    +8809612-000123{" "}
+                    +8809612-000123
                   </a>
                 </p>
                 <p style={{ marginBottom: "0" }}>
                   <a href="tel:+8809678-114545">
                     <Icon icon={phone} size={18} className="me-2" />
-                    +8809678-114545{" "}
+                    +8809678-114545
                   </a>
                 </p>
                 <p style={{ marginBottom: "20px" }}>
@@ -97,11 +101,6 @@ export const Footer = () => {
                   <strong>Factory Address:</strong> South Kolma, 02/03, Dairy
                   Farm-1341, Savar, Dhaka
                 </p>
-
-                {/* <h6 style={{ marginBottom: '8px' }}>Seller Contact</h6>
-                                <p style={{ marginBottom: '0' }}><a href="tel:+8801324245073"><Icon icon={phone} size={18} className="me-2" />01762178238 </a></p>
-                                <p style={{ marginBottom: '0' }}><a href="mailto:support@eazybest.com"><Icon icon={mail} size={18} className="me-2" />support@efgfashion.com</a></p>
-                                <p style={{ marginBottom: '15px' }}><Icon icon={ic_place} size={18} className="me-2" />Road 1, Sector 5, Uttara, Dhaka</p> */}
               </div>
               {/* Policy & Info */}
               <div className="col-lg-4 mb-4 mb-lg-0">
@@ -145,8 +144,11 @@ export const Footer = () => {
                     <input
                       type="text"
                       name="email"
-                      // className={errors.email ? "form-control shadow-none error" : "form-control shadow-none"}
-                      className="form-control shadow-none"
+                      className={
+                        errors.email
+                          ? "form-control shadow-none error"
+                          : "form-control shadow-none"
+                      }
                       placeholder="example@gmail.com"
                       ref={register("email", {
                         required: true,
@@ -199,28 +201,28 @@ export const Footer = () => {
               </div>
 
               <div className="d-flex justify-content-start">
-                <Image
+                <img
                   src={Dhl}
                   alt="..."
                   className="img-fluid"
                   height={50}
                   width={100}
                 />
-                <Image
+                <img
                   src={Fedex}
                   alt="..."
                   className="img-fluid"
                   height={50}
                   width={150}
                 />
-                <Image
+                <img
                   src={Pathao}
                   alt="..."
                   className="img-fluid"
                   height={50}
                   width={150}
                 />
-                <Image
+                <img
                   src={Sundarban}
                   alt="..."
                   className="img-fluid"

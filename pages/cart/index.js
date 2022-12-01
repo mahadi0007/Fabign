@@ -6,7 +6,7 @@ import Image from "next/image";
 import withAuth from "../../components/withAuth/index";
 import { OrderSuccessModal } from "../../components/modal/OrderSuccessModal";
 import { Toastify } from "../../components/toastify";
-import { Layout2 } from "../../components/layout/index";
+import { Layout } from "../../components/layout/index";
 import { BreadCrumb } from "../../components/breadcrumb";
 import { Container } from "../../components/container";
 import { Text } from "../../components/text";
@@ -107,7 +107,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchData();
-  }, [token]);
+  }, []);
 
   const getCart = useCallback(() => {
     const cartprice = 0;
@@ -196,7 +196,7 @@ const Home = () => {
   };
 
   return (
-    <Layout2 title="Cart Page">
+    <Layout title="Cart Page">
       {/* First section BreadCrumb */}
       <Container.Simple>
         <BreadCrumb />
@@ -207,7 +207,7 @@ const Home = () => {
         {cartlen < 1 ? (
           <div className="col-lg-12">
             <div className="text-center">
-              <Image src={EmptyCart} alt="empty" height={250} width={250} />
+              <img src={EmptyCart} alt="empty" height={250} width={250} />
             </div>
             <Text className="text-center">No Items Added Yet</Text>
           </div>
@@ -639,7 +639,7 @@ const Home = () => {
 
         <OrderSuccessModal show={orderSuccess.show} size="md" />
       </Container.Simple>
-    </Layout2>
+    </Layout>
   );
 };
 

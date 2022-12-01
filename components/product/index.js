@@ -16,7 +16,7 @@ export const ProductShow = (props) => {
 
   return (
     <div className="card">
-      <Image
+      <img
         src={`${Requests.HostUrl + featuredImage.large}`}
         className="card-img-top card-img-contain p-2"
         alt=""

@@ -29,7 +29,7 @@ export const CartItem = (props) => {
             className="d-flex justify-content-start"
             onClick={() => router.push(`/product/${_id}`)}
           >
-            <Image
+            <img
               src={Requests.HostUrl + featuredImage.large}
               alt="..."
               className="me-2"

@@ -113,7 +113,7 @@ const ProductsIndex = () => {
   return (
     <div>
       <Head>
-        <title>FabignTailor Profile</title>
+        <title>Fabign Profile</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AccountNavbar ref={accountNavbarRef} />

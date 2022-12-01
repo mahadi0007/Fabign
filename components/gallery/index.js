@@ -23,7 +23,7 @@ export const Gallery = (props) => {
       {/* Large images container */}
       <Container.Column className="mb-2">
         {largeImage ? (
-          <Image
+          <img
             src={Requests.HostUrl + largeImage}
             alt=".."
             height={1000}
@@ -47,7 +47,7 @@ export const Gallery = (props) => {
                   onClick={() => setLargeImage(item)}
                   style={{ cursor: "pointer" }}
                 >
-                  <Image
+                  <img
                     src={Requests.HostUrl + item}
                     className="img-fluid"
                     alt="..."
@@ -69,7 +69,7 @@ export const Gallery = (props) => {
                   onClick={() => setLargeImage(item.large)}
                   style={{ cursor: "pointer" }}
                 >
-                  <Image
+                  <img
                     src={Requests.HostUrl + item.large}
                     className="img-fluid"
                     alt="..."

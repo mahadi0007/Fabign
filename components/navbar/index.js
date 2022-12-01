@@ -1,104 +1,166 @@
 import { useState, useEffect, useCallback } from "react";
+import { BsHeadset } from "react-icons/bs";
+import { AiOutlineMail } from "react-icons/ai";
 import {
-  Award,
+  ArrowRightCircle,
   ChevronRight,
+  LogIn,
+  LogOut,
   Menu,
-  PenTool,
-  Printer,
-  Scissors,
-  ShoppingBag,
   Unlock,
   User,
+  Users,
 } from "react-feather";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Text } from "../text";
-import { GeneralImage } from "../image";
 import { Container } from "../container";
-import { SecondaryButton, PrimaryButton, GrayButton } from "../button";
+import { GrayButton } from "../button";
 import { useWindowSize } from "../window/windowSize";
 import { Drawer } from "../drawer";
-import Logo from "../../public/assets/logo.png";
-import LogoWhite from "../../public/assets/logowhite.png";
+import Logo from "../../public/assets/logo.svg";
+import Busket from "../../public/assets/navitems/busket_icon.svg";
+import Image from "next/image";
+import { useRouter } from "next/dist/client/router";
+import { getDatabaseCart } from "../../utils/utilities";
+import SearchComponent from "../search";
 import { Requests } from "../../utils/Http";
+import Link from "next/link";
 
 // Base navbar
-export const NavbarBase = () => {
+export const Navbar = () => {
   const window = useWindowSize();
   const [show, setShow] = useState(false);
+  const [price, setPrice] = useState(0);
+  const [isLoggedin, setisLoggedIn] = useState(false);
+
+  const router = useRouter();
+
+  // price calculation
+  useEffect(() => {
+    const cartprice = 0;
+    Object.keys(getDatabaseCart()).map((key, index) => {
+      const items = JSON.parse(key);
+      const val = Object.values(getDatabaseCart())[index];
+      cartprice += items.sellingPrice * val;
+    });
+    setPrice(cartprice);
+  });
+
+  const handleLogOut = () => {
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      setisLoggedIn(true);
+    } else {
+      setisLoggedIn(false);
+    }
+  }, []);
 
   return (
-    <div className="base-navbar shadow-sm px-lg-5">
-      <Container.Fluid>
-        <Container.Row>
-          <Container.Column>
+    <div className="base-navbar sticky-top shadow-sm  bg-white ">
+      <Container.Simple>
+        <>
+          <>
             <div className="d-flex">
-              {/* Logo container */}
               <div>
-                <a href={"/"}>
-                  <GeneralImage
-                    src={Logo}
+                <Link href={"/"}>
+                  <img
+                    role="button"
+                    src={Logo.src}
+                    className={"img-fluid"}
                     alt="Fabign logo."
-                    x={window.width >= 992 ? 170 : 140}
-                    y={window.width >= 992 ? 75 : 70}
+                    width={window.width >= 992 ? 170 : 140}
+                    height={window.width >= 992 ? 75 : 70}
                   />
-                </a>
+                </Link>
               </div>
 
               {/* Others elements */}
-              <div className="elements-container flex-fill d-none d-xl-block">
-                <div className="d-flex justify-content-end">
-                  <div className="text-center me-4">
-                    <a href="#" className="text-decoration-none">
-                      <Text className="text-dark fw-bold fs-14 mb-0">
-                        About
-                      </Text>
-                      <Text className="text-muted fw-thin fs-12 mb-0">
-                        Be on Quality
-                      </Text>
-                    </a>
+              <div className="elements-container flex-fill d-none d-xl-block ms-5">
+                <div className="d-flex justify-content-betweeen">
+                  <div className="text-center px-2 d-flex align-items-center">
+                    <Link href={"/products"} className="text-decoration-none">
+                      <div className="" style={{ cursor: "pointer" }}>
+                        <Text className="text-dark fw-bold fs-14 mb-0">
+                          Shop
+                        </Text>
+                        {/* <Text className="text-muted fw-thin fs-12 mb-0">
+                          Choose Your Design
+                        </Text> */}
+                      </div>
+                    </Link>
                   </div>
 
-                  <div className="text-center me-4">
-                    <a href="#" className="text-decoration-none">
-                      <Text className="text-dark fw-bold fs-14 mb-0">Shop</Text>
-                      <Text className="text-muted fw-thin fs-12 mb-0">
-                        Choose Your Desire
-                      </Text>
-                    </a>
+                  {/* search bar */}
+                  <div className="text-center w-50 search-container flex-fill">
+                    <SearchComponent />
                   </div>
 
-                  <div className="text-center me-4">
-                    <a
-                      href={"/print-on-demand"}
-                      className="text-decoration-none"
+                  {/* dropdown component */}
+                  <div className="text-center ms-0 me-4 rounded">
+                    <DropdownButton
+                      variant="primary shadow-none customdrop border-0"
+                      title={<Users className="text-primary" />}
+                      size="sm"
                     >
-                      <Text className="text-dark fw-bold fs-14 mb-0">
-                        Print-on-Demand
-                      </Text>
-                      <Text className="text-muted fw-thin fs-12 mb-0">
-                        Maeketplace Designs
-                      </Text>
-                    </a>
+                      {isLoggedin ? (
+                        <>
+                          <Dropdown.Item href="/profile">
+                            <div className="d-flex justify-content-between">
+                              <Text className="mb-0">Profile</Text>
+                              <User size={16} />
+                            </div>
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={() => handleLogOut()}>
+                            <div className="d-flex justify-content-between">
+                              <Text className="mb-0">Logout</Text>
+                              <LogOut size={16} />
+                            </div>
+                          </Dropdown.Item>
+                        </>
+                      ) : (
+                        <>
+                          <Dropdown.Item href="/login">
+                            <div className="d-flex justify-content-between">
+                              <Text className="mb-0">Login</Text>
+                              <LogIn size={16} />
+                            </div>
+                          </Dropdown.Item>
+                          <Dropdown.Item href="/registration">
+                            <div className="d-flex justify-content-between">
+                              <Text className="mb-0">Registration</Text>
+                              <User size={16} />
+                            </div>
+                          </Dropdown.Item>
+                        </>
+                      )}
+                    </DropdownButton>
                   </div>
 
-                  <a href="call-for-tailor">
-                    <PrimaryButton className="mx-3">
-                      <Text className="fs-13 fw-thin mb-0">
-                        Call For Tailor
-                      </Text>
-                    </PrimaryButton>
-                  </a>
-
-                  <div className="text-center ms-3 pt-2">
-                    <a href="#" className="text-decoration-none">
-                      <Text className="text-primary fs-15 mb-0">Login /</Text>
-                    </a>
+                  {/* cart section */}
+                  <div
+                    className="text-center ms-0 border border-primary rounded"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => router.push("/cart")}
+                  >
+                    <div className="pt-1 pb-1 ps-2">
+                      <div className="d-flex justify-content-center pt-1 ps-2 pe-2 ">
+                        <img src={Busket} alt="" className="pe-1 mb-0" />
+                        <Text className="text-primary pb-0 mb-0">{price}৳</Text>
+                      </div>
+                    </div>
                   </div>
-
-                  <div className="pt-2">
-                    <a href="#" className="text-decoration-none">
-                      <Text className="text-dark fs-15 mb-0">Signup</Text>
-                    </a>
+                </div>
+              </div>
+              <div className="elements-container flex-fill d-none d-xl-none d-sm-block d-md-block">
+                <div className="d-flex justify-content-center">
+                  <div className="text-center ms-5 w-100">
+                    <SearchComponent />
                   </div>
                 </div>
               </div>
@@ -113,9 +175,14 @@ export const NavbarBase = () => {
                 </GrayButton>
               </div>
             </div>
-          </Container.Column>
-        </Container.Row>
-      </Container.Fluid>
+            <div className="w-100 d-sm-none">
+              <div>
+                <SearchComponent />
+              </div>
+            </div>
+          </>
+        </>
+      </Container.Simple>
 
       {/* Mobile drawer */}
       <Drawer
@@ -125,70 +192,8 @@ export const NavbarBase = () => {
         onHide={() => setShow(false)}
       >
         <div className="drawer-container">
-          <a
-            href="#"
-            className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10"
-          >
-            <div className="d-flex">
-              <div className="pt-1 pe-3">
-                <Award size={20} className="text-muted" />
-              </div>
-              <div>
-                <Text className="text-dark fw-bold fs-13 mb-0">About</Text>
-                <Text className="text-muted fw-thin fs-12 mb-0">
-                  Be on Quality
-                </Text>
-              </div>
-              <div className="ms-auto pt-10">
-                <ChevronRight className="text-dark float-end" size={16} />
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10"
-          >
-            <div className="d-flex">
-              <div className="pt-1 pe-3">
-                <ShoppingBag size={20} className="text-muted" />
-              </div>
-              <div>
-                <Text className="text-dark fw-bold fs-13 mb-0">Shop</Text>
-                <Text className="text-muted fw-thin fs-12 mb-0">
-                  Choose Your Desire
-                </Text>
-              </div>
-              <div className="ms-auto pt-10">
-                <ChevronRight className="text-dark float-end" size={16} />
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10"
-          >
-            <div className="d-flex">
-              <div className="pt-1 pe-3">
-                <Printer size={20} className="text-muted" />
-              </div>
-              <div>
-                <Text className="text-dark fw-bold fs-13 mb-0">
-                  Print-on-Demand
-                </Text>
-                <Text className="text-muted fw-thin fs-12 mb-0">
-                  Maeketplace Designs
-                </Text>
-              </div>
-              <div className="ms-auto pt-10">
-                <ChevronRight className="text-dark float-end" size={16} />
-              </div>
-            </div>
-          </a>
-
-          <a
-            href="#"
+          <Link
+            href={"/login"}
             className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10"
           >
             <div className="d-flex">
@@ -205,10 +210,10 @@ export const NavbarBase = () => {
                 <ChevronRight className="text-dark float-end" size={16} />
               </div>
             </div>
-          </a>
+          </Link>
 
-          <a
-            href="#"
+          <Link
+            href={"/registration"}
             className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10"
           >
             <div className="d-flex">
@@ -225,46 +230,111 @@ export const NavbarBase = () => {
                 <ChevronRight className="text-dark float-end" size={16} />
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </Drawer>
     </div>
   );
 };
 
-// Seconday navbar
-export const NavbarSecondary = (props) => {
-  return (
-    <Navbar
-      className="secondary-navbar py-0"
-      expand="lg"
-      onClick={() => props.handleOutsideClick(true)}
-    >
-      <Container.Fluid className="text-30">
-        <Navbar.Brand href="/">
-          <GeneralImage src={LogoWhite} alt="White logo" x={140} y={60} />
-        </Navbar.Brand>
+// Topbar
+export const TopBar = () => {
+  const [topbarData, setTopbarData] = useState([]);
+  const [topbarButton, setTopbarButton] = useState([]);
 
-        <Navbar.Toggle
-          aria-controls="basic-navbar-nav"
-          variant="light"
-          className="shadow-none border-0"
-        >
-          <Menu className="text-white" />
-        </Navbar.Toggle>
+  const fetchTopbarData = useCallback(async () => {
+    const response = await Requests.Topbar.Index();
+    setTopbarData(response.data.data[0]);
+  }, []);
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#">design your garment</Nav.Link>
-            <Nav.Link href="#">shop online</Nav.Link>
-            <Nav.Link href="#">about us</Nav.Link>
-            <Nav.Link href="#">more</Nav.Link>
-          </Nav>
-          <Nav className="ms-auto">
-            <Nav.Link href="/">Back to E-Commerce</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container.Fluid>
-    </Navbar>
-  );
+  const fetchTopbarButtonData = useCallback(async () => {
+    const response = await Requests.TopbarButton.Index();
+    console.log(response);
+    setTopbarButton(response.data.data);
+  }, []);
+
+  // fetching default topbar
+  useEffect(() => {
+    fetchTopbarData();
+  }, [fetchTopbarData]);
+
+  // fetching default topbar button
+  useEffect(() => {
+    fetchTopbarButtonData();
+  }, [fetchTopbarButtonData]);
+
+  if (!topbarData.is_hidden) {
+    return (
+      <div className="base-topbar sticky-top shadow-sm">
+        <Container.Fluid className="p-0">
+          <div className="d-flex justify-content-between">
+            <div className="col-12 col-lg-3 text-center">
+              <Link href={`${topbarData.link}`} passHref>
+                <div
+                  className="bg-secondary d-none d-lg-block pe-2"
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="my-auto d-flex justify-content-start">
+                    <img
+                      className="p-2"
+                      alt="..."
+                      src={topbarData.icon}
+                      height={50}
+                      width={50}
+                    />
+                    <Text className="text-white my-auto fw-bolder">
+                      {topbarData.title}
+                    </Text>
+                    <ArrowRightCircle
+                      size={26}
+                      color="white"
+                      className="ps-1 my-auto"
+                    />
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div
+              className="col-12 col-lg-6 text-center d-flex align-items-center border-bottom justify-content-center"
+              style={{ fontSize: "0.9rem!important" }}
+            >
+              <div className="col-md-4 border-end text-center">
+                <p>
+                  <BsHeadset className="me-1" size={15} />
+                  +8809678114545
+                </p>
+              </div>
+              <div className="col-md-4 border-end text-center">
+                <p>
+                  <AiOutlineMail className="me-1" size={15} />
+                  support@efgfashion.com
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-secondary d-md-block d-lg-none d-xl-none p-2">
+            <div className="my-auto d-flex justify-content-start">
+              <img
+                className="p-2"
+                alt="..."
+                src={topbarData.icon}
+                height={50}
+                width={50}
+              />
+              <Text className="text-white my-auto fw-bolder">
+                {topbarData.title}
+              </Text>
+              <ArrowRightCircle
+                size={26}
+                color="white"
+                className="ps-1 my-auto"
+              />
+            </div>
+          </div>
+        </Container.Fluid>
+      </div>
+    );
+  } else {
+    return null;
+  }
 };

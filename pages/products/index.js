@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { Layout2 } from "../../components/layout/index";
+import { Layout } from "../../components/layout/index";
 import { Container } from "../../components/container";
 import { Text } from "../../components/text";
 import { Category } from "../../components/categories/Index";
@@ -289,7 +289,7 @@ export default function Home() {
   }, [query, filterProducts]);
 
   return (
-    <Layout2 title="Product Filter">
+    <Layout title="Product Filter">
       {/* First section BreadCrumb */}
       <Container.Simple>
         <BreadCrumb />
@@ -565,6 +565,6 @@ export default function Home() {
                     </div>
                 </div>
             </Container.Simple> */}
-    </Layout2>
+    </Layout>
   );
 }

@@ -142,7 +142,7 @@ const Index = () => {
                 >
                   <div className="item d-flex bg-white">
                     <div className="img-container">
-                      <Image
+                      <img
                         src={`https://api.efgtailor.com${product.featuredImage.large}`}
                         className="img-fluid"
                         alt="..."

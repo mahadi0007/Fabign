@@ -34,7 +34,7 @@ export const AccountNavbar = forwardRef((props, ref) => {
 
   useEffect(() => {
     fetchData();
-  }, [token]);
+  }, []);
 
   useImperativeHandle(ref, () => ({
     dataUpdate() {

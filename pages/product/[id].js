@@ -14,7 +14,7 @@ import {
   ShoppingCart,
 } from "react-feather";
 import { Text } from "../../components/text";
-import { Layout2 } from "../../components/layout/index";
+import { Layout } from "../../components/layout/index";
 import { Container } from "../../components/container";
 import { PrimaryButton, SecondaryButton } from "../../components/button";
 import { Gallery } from "../../components/gallery";
@@ -330,7 +330,7 @@ const Home = () => {
   }, [fetchAdditionalInfo, query]);
 
   return (
-    <Layout2 title="Product Show">
+    <Layout title="Product Show">
       {/* First section BreadCrumb */}
       <Container.Simple>
         <BreadCrumb />
@@ -820,7 +820,7 @@ const Home = () => {
             })}
         </Container.Row>
       </Container.Simple>
-    </Layout2>
+    </Layout>
   );
 };
 

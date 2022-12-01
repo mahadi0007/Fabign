@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 import { Text } from "../components/text";
 import { Album } from "../components/Album/Index";
-import { Layout2 } from "../components/layout/index";
+import { Layout } from "../components/layout/index";
 import { Container } from "../components/container";
 import { ProductShow } from "../components/product";
 import { CarouselDev } from "../components/carousel";
@@ -104,7 +104,7 @@ const Index = () => {
   };
 
   return (
-    <Layout2 title="Home">
+    <Layout title="Home">
       {/* first section */}
       <div className="first-section">
         <CarouselDev />
@@ -211,7 +211,7 @@ const Index = () => {
         pageId="190396249224058"
         appId="1018347269020978"
       />
-    </Layout2>
+    </Layout>
   );
 };
 

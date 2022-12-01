@@ -5,7 +5,7 @@ import { grid, rotateCcw, settings, lock } from "react-icons-kit/feather";
 import { GeneralImage } from "../image";
 import Logo from "../../public/assets/logowhite.png";
 
-export const Sidebar = (props) => {
+export const Sidebar = () => {
   const router = useRouter();
   let path = router.pathname;
   const [isLoading, setLoading] = useState(false);
@@ -49,7 +49,6 @@ export const Sidebar = (props) => {
             router.pathname == "/profile/my-purchases" ? "btn active" : "btn"
           }
           onClick={() => router.push("/profile/my-purchases")}
-          disabled={props.storeWarning}
         >
           <Icon icon={rotateCcw} size={16} />
           <span className="ms-2">My Puchases</span>

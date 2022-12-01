@@ -8,7 +8,7 @@ export default function Custom404() {
     return (
         <div className="flex-center flex-column text-center p-5">
             <div className="py-5">
-                <Image
+                <img
                     src={FourOFourImg}
                     alt="Page not found"
                     width={250}

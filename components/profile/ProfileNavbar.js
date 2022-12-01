@@ -13,12 +13,14 @@ import { Requests } from "../../utils/Http";
 // eslint-disable-next-line react/display-name
 export const ProfileNavbar = forwardRef((props, ref) => {
   const [data, setData] = useState({});
-  const [token] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(null);
 
   // fetch data
   const fetchData = async () => {
-    if (token) {
-      const logged = jwt_decode(token);
+    const myToken = localStorage.getItem("token");
+    if (myToken) {
+      setToken(myToken);
+      const logged = jwt_decode(myToken);
       const response = await Requests.User.Index(logged.id);
       if (response && response.status === 200) {
         setData(response.data.body);
@@ -28,7 +30,7 @@ export const ProfileNavbar = forwardRef((props, ref) => {
 
   useEffect(() => {
     fetchData();
-  }, [token]);
+  }, []);
 
   useImperativeHandle(ref, () => ({
     dataUpdate() {
