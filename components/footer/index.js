@@ -73,47 +73,48 @@ export const Footer = () => {
               {/* Contact information */}
               <div className="col-lg-4 mb-4 mb-lg-0">
                 <h6 style={{ marginBottom: "8px" }}>Customer Contact</h6>
-                <p style={{ marginBottom: "0" }}>
+                {/* <p style={{ marginBottom: "0" }}>
                   <a href="tel:+8809612-000123">
                     <Icon icon={phone} size={18} className="me-2" />
                     +8809612-000123
                   </a>
-                </p>
-                <p style={{ marginBottom: "0" }}>
+                </p> */}
+                {/* <p style={{ marginBottom: "0" }}>
                   <a href="tel:+8809678-114545">
                     <Icon icon={phone} size={18} className="me-2" />
                     +8809678-114545
                   </a>
-                </p>
-                <p style={{ marginBottom: "20px" }}>
+                </p> */}
+                {/* <p style={{ marginBottom: "20px" }}>
                   <a href="mailto:support@efgfashion.com">
                     <Icon icon={mail} size={18} className="me-2" />
                     support@efgfashion.com
                   </a>
-                </p>
+                </p> */}
                 <p style={{ marginBottom: "15px" }}>
                   <Icon icon={ic_place} size={18} className="me-2" />
-                  <strong>Head Office:</strong> Navana Oval, 7th floor, Plot-5,
-                  Sonargaon Janapath road, Sector-7, Uttara, Dhaka
+                  <strong>Office:</strong> House-32(Ground floor), Road-05,
+                  Block- G, Mirpur-1 1216 Dhaka, Dhaka Division, Bangladesh
                 </p>
-                <p style={{ marginBottom: "15px" }}>
+
+                {/* <p style={{ marginBottom: "15px" }}>
                   <Icon icon={ic_place} size={18} className="me-2" />
                   <strong>Factory Address:</strong> South Kolma, 02/03, Dairy
                   Farm-1341, Savar, Dhaka
-                </p>
+                </p> */}
               </div>
               {/* Policy & Info */}
               <div className="col-lg-4 mb-4 mb-lg-0">
                 <h6>Policy & Info</h6>
                 <Link href={`/about-us`}>About Us</Link>
                 <Link href={`/privacy-policy`}>Privacy Policy</Link>
-                <Link href={`/cookie-policy`}>Cookie Policy</Link>
+                {/* <Link href={`/cookie-policy`}>Cookie Policy</Link>
                 <Link href={`/why-shop-on-efgfashion`}>Why Shop on Fabign</Link>
                 <Link href={`/terms-and-conditions`}>Terms Conditions</Link>
                 <Link href={`/faq`}>FAQs</Link>
                 <Link href="#">Seller Login</Link>
                 <p className="mb-0">e-CAB Member ID: 1608</p>
-                <p className="mb-0">BIN : 004296225-0101</p>
+                <p className="mb-0">BIN : 004296225-0101</p> */}
               </div>
 
               {/* My account */}
@@ -177,7 +178,7 @@ export const Footer = () => {
               {/* Social links */}
               <div className="social-links">
                 <a
-                  href="https://www.facebook.com/efgfashiongarments"
+                  href="https://www.facebook.com/shopfabign"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -198,38 +199,45 @@ export const Footer = () => {
                 <a href="#" target="_blank" rel="noreferrer">
                   <Icon icon={whatsapp} size={20} />
                 </a>
+                <a
+                  href="https://www.google.com/maps/dir/23.8461878,90.3465982/23.8006544,90.3538746/@23.8230534,90.3299944,14z/data=!3m1!4b1!4m4!4m3!1m1!4e1!1m0"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Icon icon={ic_place} size={20} />
+                </a>
               </div>
 
-              <div className="d-flex justify-content-start">
+              {/* <div className="d-flex justify-content-start">
                 <img
-                  src={Dhl}
+                  src={Dhl.src}
                   alt="..."
                   className="img-fluid"
                   height={50}
                   width={100}
                 />
                 <img
-                  src={Fedex}
+                  src={Fedex.src}
                   alt="..."
                   className="img-fluid"
                   height={50}
                   width={150}
                 />
                 <img
-                  src={Pathao}
+                  src={Pathao.src}
                   alt="..."
                   className="img-fluid"
                   height={50}
                   width={150}
                 />
                 <img
-                  src={Sundarban}
+                  src={Sundarban.src}
                   alt="..."
                   className="img-fluid"
                   height={50}
                   width={120}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

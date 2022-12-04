@@ -1,8 +1,8 @@
 module.exports = {
   reactStrictMode: true,
   trailingSlash: false,
-  unoptimized: true,
   images: {
+    unoptimized: true,
     domains: ["api.fabign.com", "localhost"],
   },
 };
