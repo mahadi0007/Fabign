@@ -17,7 +17,7 @@ import { Container } from "../container";
 import { GrayButton } from "../button";
 import { useWindowSize } from "../window/windowSize";
 import { Drawer } from "../drawer";
-import Logo from "../../public/assets/logo.jpeg";
+import Logo from "../../public/assets/logo.png";
 import Busket from "../../public/assets/navitems/busket_icon.svg";
 import Image from "next/image";
 import { useRouter } from "next/dist/client/router";

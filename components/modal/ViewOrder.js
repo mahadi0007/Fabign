@@ -10,7 +10,7 @@ import { Card } from "../card";
 import { DataTable } from "../dataTable/DataTable";
 import { Requests } from "../../utils/Http";
 import { GeneralImage } from "../image";
-import Logo from "../../public/assets/logo.jpeg";
+import Logo from "../../public/assets/logo.png";
 import Barcode from "../../public/assets/barcode.png";
 import Paid from "../../public/assets/paid.png";
 import html2canvas from "html2canvas";
@@ -303,7 +303,7 @@ export const ViewOrder = (props) => {
                 <li
                   className={
                     item.orderStatus.some(
-                      (el) => el.status === "Order Received",
+                      (el) => el.status === "Order Received"
                     )
                       ? "progress-step is-complete"
                       : "progress-step"
@@ -315,13 +315,13 @@ export const ViewOrder = (props) => {
                   <div className="progress-text">
                     <p className="progress-title fw-bold">Order received</p>
                     {item.orderStatus.some(
-                      (el) => el.status === "Order Received",
+                      (el) => el.status === "Order Received"
                     ) && (
                       <p>
                         {moment(
                           item.orderStatus.find(
-                            (el) => el.status === "Order Received",
-                          ).time,
+                            (el) => el.status === "Order Received"
+                          ).time
                         ).format("hh:mm A, DD MMM YYYY")}
                       </p>
                     )}
@@ -331,7 +331,7 @@ export const ViewOrder = (props) => {
                 <li
                   className={
                     item.orderStatus.some(
-                      (el) => el.status === "Processing Order",
+                      (el) => el.status === "Processing Order"
                     )
                       ? "progress-step is-complete"
                       : "progress-step"
@@ -343,13 +343,13 @@ export const ViewOrder = (props) => {
                   <div className="progress-text">
                     <p className="progress-title fw-bold">Processing Order</p>
                     {item.orderStatus.some(
-                      (el) => el.status === "Processing Order",
+                      (el) => el.status === "Processing Order"
                     ) && (
                       <p>
                         {moment(
                           item.orderStatus.find(
-                            (el) => el.status === "Processing Order",
-                          ).time,
+                            (el) => el.status === "Processing Order"
+                          ).time
                         ).format("hh:mm A, DD MMM YYYY")}
                       </p>
                     )}
@@ -360,7 +360,7 @@ export const ViewOrder = (props) => {
                 <li
                   className={
                     item.orderStatus.some(
-                      (el) => el.status === "Handed over to Courier",
+                      (el) => el.status === "Handed over to Courier"
                     )
                       ? "progress-step is-complete"
                       : "progress-step"
@@ -373,13 +373,13 @@ export const ViewOrder = (props) => {
                   <div className="progress-text">
                     <p className="progress-title fw-bold">Out for Delivery</p>
                     {item.orderStatus.some(
-                      (el) => el.status === "Handed over to Courier",
+                      (el) => el.status === "Handed over to Courier"
                     ) && (
                       <p>
                         {moment(
                           item.orderStatus.find(
-                            (el) => el.status === "Handed over to Courier",
-                          ).time,
+                            (el) => el.status === "Handed over to Courier"
+                          ).time
                         ).format("hh:mm A, DD MMM YYYY")}
                       </p>
                     )}
@@ -389,7 +389,7 @@ export const ViewOrder = (props) => {
                 <li
                   className={
                     item.orderStatus.some(
-                      (el) => el.status === "Delivery by Pathao",
+                      (el) => el.status === "Delivery by Pathao"
                     )
                       ? "progress-step is-complete"
                       : "progress-step"
@@ -401,14 +401,14 @@ export const ViewOrder = (props) => {
                   <div className="progress-text">
                     <p className="progress-title fw-bold">Delivery by Pathao</p>
                     {item.orderStatus.some(
-                      (el) => el.status === "Delivery by Pathao",
+                      (el) => el.status === "Delivery by Pathao"
                     ) && (
                       <>
                         <p>
                           {moment(
                             item.orderStatus.find(
-                              (el) => el.status === "Delivery by Pathao",
-                            ).time,
+                              (el) => el.status === "Delivery by Pathao"
+                            ).time
                           ).format("hh:mm A, DD MMM YYYY")}
                         </p>
                         <p>#DE230622734HCC</p>
@@ -420,7 +420,7 @@ export const ViewOrder = (props) => {
                 <li
                   className={
                     item.orderStatus.some(
-                      (el) => el.status === "Delivery by RedX",
+                      (el) => el.status === "Delivery by RedX"
                     )
                       ? "progress-step is-complete"
                       : "progress-step d-none"
@@ -432,14 +432,14 @@ export const ViewOrder = (props) => {
                   <div className="progress-text">
                     <p className="progress-title fw-bold">Delivery by RedX</p>
                     {item.orderStatus.some(
-                      (el) => el.status === "Delivery by RedX",
+                      (el) => el.status === "Delivery by RedX"
                     ) && (
                       <>
                         <p>
                           {moment(
                             item.orderStatus.find(
-                              (el) => el.status === "Delivery by RedX",
-                            ).time,
+                              (el) => el.status === "Delivery by RedX"
+                            ).time
                           ).format("hh:mm A, DD MMM YYYY")}
                         </p>
                         <p>#DE230622734HCC</p>
@@ -461,13 +461,13 @@ export const ViewOrder = (props) => {
                   <div className="progress-text">
                     <p className="progress-title fw-bold">Complete Order</p>
                     {item.orderStatus.some(
-                      (el) => el.status === "Delivered",
+                      (el) => el.status === "Delivered"
                     ) && (
                       <p>
                         {moment(
                           item.orderStatus.find(
-                            (el) => el.status === "Delivered",
-                          ).time,
+                            (el) => el.status === "Delivered"
+                          ).time
                         ).format("hh:mm A, DD MMM YYYY")}
                       </p>
                     )}
@@ -1020,7 +1020,7 @@ export const ViewOrder = (props) => {
             <Container.Row className="my-4 text-center">
               <p>
                 {`PDF Generated on ${moment(new Date()).format(
-                  "dddd, MMMM Do, YYYY",
+                  "dddd, MMMM Do, YYYY"
                 )}`}
               </p>
             </Container.Row>
