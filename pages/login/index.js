@@ -90,7 +90,11 @@ export default function Home() {
               <div className="d-flex justify-content-start p-2">
                 <Text className="text-muted me-2 fs-14 mb-0 ">{`Don't Have an Account?`}</Text>
               </div>
-              <a href={"/registration"} className="border text-decoration-none">
+              <a
+                linkAs={Link}
+                href={"/registration"}
+                className="border text-decoration-none"
+              >
                 <Text className="fs-14 text-blue mb-0 p-2 ps-3 pe-3 text-decoration-none">
                   Registration
                 </Text>

@@ -110,7 +110,7 @@ export const Navbar = () => {
                     >
                       {isLoggedin ? (
                         <>
-                          <Dropdown.Item href="/profile">
+                          <Dropdown.Item linkAs={Link} href="/profile">
                             <div className="d-flex justify-content-between">
                               <Text className="mb-0">Profile</Text>
                               <User size={16} />
@@ -125,13 +125,13 @@ export const Navbar = () => {
                         </>
                       ) : (
                         <>
-                          <Dropdown.Item href="/login">
+                          <Dropdown.Item linkAs={Link} href="/login">
                             <div className="d-flex justify-content-between">
                               <Text className="mb-0">Login</Text>
                               <LogIn size={16} />
                             </div>
                           </Dropdown.Item>
-                          <Dropdown.Item href="/registration">
+                          <Dropdown.Item linkAs={Link} href="/registration">
                             <div className="d-flex justify-content-between">
                               <Text className="mb-0">Registration</Text>
                               <User size={16} />
