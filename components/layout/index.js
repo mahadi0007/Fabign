@@ -7,6 +7,7 @@ export const Layout = (props) => {
     <div className="layout-section">
       <Head>
         <title>{props ? props.title : null} | Fabign</title>
+        <link rel="icon" href="/favicon.png" />
         {/* <link rel="manifest" href="../../public/manifest.json" /> */}
       </Head>
       {/* <TopBar /> */}
