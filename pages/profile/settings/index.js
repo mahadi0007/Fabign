@@ -114,7 +114,7 @@ const ProductsIndex = () => {
     <div>
       <Head>
         <title>Fabign Profile</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <AccountNavbar ref={accountNavbarRef} />
 
