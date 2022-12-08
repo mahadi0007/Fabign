@@ -66,7 +66,7 @@ export const Navbar = () => {
       <Container.Simple>
         <>
           <>
-            <div className="d-flex">
+            <div className="d-flex align-items-center">
               <div>
                 <Link href={"/"}>
                   <img

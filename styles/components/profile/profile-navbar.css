@@ -1,0 +1,14 @@
+.custom-navbar {
+  margin-bottom: 1rem !important;
+  padding: 0.5rem !important;
+  background: #fff !important;
+}
+.custom-navbar ul li {
+  float: left;
+  list-style: none;
+  margin-left: 5px;
+}
+.custom-navbar img {
+  height: 30px;
+  width: 30px;
+}/*# sourceMappingURL=profile-navbar.css.map */

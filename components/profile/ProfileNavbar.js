@@ -9,9 +9,11 @@ import UserImage from "../../public/assets/user.jpeg";
 import { SecondaryButton } from "../button";
 import { Text } from "../text";
 import { Requests } from "../../utils/Http";
+import { useRouter } from "next/dist/client/router";
 
 // eslint-disable-next-line react/display-name
 export const ProfileNavbar = forwardRef((props, ref) => {
+  const router = useRouter();
   const [data, setData] = useState({});
   const [token, setToken] = useState(null);
 
@@ -50,7 +52,12 @@ export const ProfileNavbar = forwardRef((props, ref) => {
 
           {/* Links button */}
           <div className="ms-auto m-0">
-            <a href={"/"} className="mx-2 mb-0">
+            <a
+              className="mx-2 mb-0"
+              onClick={() => {
+                router.push("/");
+              }}
+            >
               <SecondaryButton className="px-2 py-1 rounded">
                 <Text className="fs-15 fw-thin mb-0">Back to E-Commerce</Text>
               </SecondaryButton>

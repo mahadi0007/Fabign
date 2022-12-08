@@ -6,8 +6,10 @@ import { chevronLeft, chevronRight } from "react-icons-kit/feather";
 import { Text } from "../text";
 import { Requests } from "../../utils/Http/index";
 import parse from "html-react-parser";
+import { useRouter } from "next/dist/client/router";
 
 export const CarouselDev = () => {
+  const router = useRouter();
   const [sliders, setSliders] = useState([]);
   // fetching carousel data
   const fetchCarouselData = useCallback(async () => {
@@ -37,7 +39,11 @@ export const CarouselDev = () => {
           {sliders.map((item, index) => (
             <Carousel.Item key={index}>
               <div className="slider-card">
-                <a href={item.hyperlink}>
+                <a
+                  onClick={() => {
+                    router.push(item.hyperlink);
+                  }}
+                >
                   <img
                     src={Requests.HostUrl + item.banner}
                     className="img-fluid img"

@@ -99,7 +99,7 @@ const Index = () => {
     <div className="search-field-container">
       <form onSubmit={handleSubmit}>
         <div className="input-group">
-          <select
+          {/* <select
             className="px-4 border border-primary"
             name="category"
             style={{ cursor: "pointer" }}
@@ -112,7 +112,7 @@ const Index = () => {
                   {item.name}
                 </option>
               ))}
-          </select>
+          </select> */}
           <input
             type="text"
             className="form-control shadow-none border border-primary pb-2 pt-2"

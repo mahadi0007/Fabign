@@ -39,12 +39,22 @@ export default function Home() {
       <Container.Simple>
         <div className="mt-4 mb-4 p-2 bg-white rounded d-flex justify-content-between">
           <div className="d-flex justify-content-start">
-            <a className="text-decoration-none" href={"/"}>
+            <a
+              className="text-decoration-none"
+              onClick={() => {
+                router.push("/");
+              }}
+            >
               <Text className="fs-14 my-auto text-muted m-0">
                 Home <span className="ps-2">/</span>
               </Text>
             </a>
-            <a className="text-decoration-none ps-2" href={router.pathname}>
+            <a
+              className="text-decoration-none ps-2"
+              onClick={() => {
+                router.push(router.pathname);
+              }}
+            >
               <Text className="fs-14 text-capitalize text-secondary my-auto m-0">
                 {router.pathname.replace("/", "")}
               </Text>
@@ -109,7 +119,12 @@ export default function Home() {
                   Have an Account?
                 </Text>
               </div>
-              <a href={"/login"} className="border text-decoration-none">
+              <a
+                className="border text-decoration-none"
+                onClick={() => {
+                  router.push("/login");
+                }}
+              >
                 <Text className="fs-14 text-blue mb-0 p-2 ps-3 pe-3 text-decoration-none">
                   Login
                 </Text>

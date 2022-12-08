@@ -1,0 +1,25 @@
+.account-mobile-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  z-index: 99;
+}
+.account-mobile-navbar .name-image {
+  margin-top: 3px;
+}
+.account-mobile-navbar .name-image h5 {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 900;
+}
+.account-mobile-navbar .name-image img {
+  width: 30px;
+  height: 30px;
+}
+.account-mobile-navbar p {
+  margin-top: 10px;
+  font-size: 15px;
+}/*# sourceMappingURL=navbar.css.map */
