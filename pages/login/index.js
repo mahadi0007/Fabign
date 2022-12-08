@@ -92,8 +92,9 @@ export default function Home() {
                 <Text className="text-muted me-2 fs-14 mb-0 ">{`Don't Have an Account?`}</Text>
               </div>
               <a
-                linkAs={Link}
-                href={"/registration"}
+                onClick={() => {
+                  router.push("/registration");
+                }}
                 className="border text-decoration-none"
               >
                 <Text className="fs-14 text-blue mb-0 p-2 ps-3 pe-3 text-decoration-none">

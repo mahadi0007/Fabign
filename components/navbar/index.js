@@ -125,13 +125,21 @@ export const Navbar = () => {
                         </>
                       ) : (
                         <>
-                          <Dropdown.Item linkAs={Link} href="/login">
+                          <Dropdown.Item
+                            onClick={() => {
+                              router.push("/login");
+                            }}
+                          >
                             <div className="d-flex justify-content-between">
                               <Text className="mb-0">Login</Text>
                               <LogIn size={16} />
                             </div>
                           </Dropdown.Item>
-                          <Dropdown.Item linkAs={Link} href="/registration">
+                          <Dropdown.Item
+                            onClick={() => {
+                              router.push("/registration");
+                            }}
+                          >
                             <div className="d-flex justify-content-between">
                               <Text className="mb-0">Registration</Text>
                               <User size={16} />
