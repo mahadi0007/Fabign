@@ -9,6 +9,7 @@ import { BreadCrumb } from "../../components/breadcrumb";
 import { Requests } from "../../utils/Http";
 import { useEffect } from "react";
 import { Toastify } from "../../components/toastify";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
