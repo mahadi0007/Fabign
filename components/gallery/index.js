@@ -14,7 +14,7 @@ export const Gallery = (props) => {
         ? props.variant.images[0]
         : props.product && props.product.featuredImage
         ? props.product.featuredImage.large
-        : ""
+        : "",
     );
   }, [props]);
 
@@ -26,8 +26,9 @@ export const Gallery = (props) => {
           <img
             src={Requests.HostUrl + largeImage}
             alt=".."
-            height={1000}
-            width={1000}
+            className="img-fluid"
+            // height={1000}
+            // width={1000}
           />
         ) : null}
       </Container.Column>
@@ -51,8 +52,8 @@ export const Gallery = (props) => {
                     src={Requests.HostUrl + item}
                     className="img-fluid"
                     alt="..."
-                    height={100}
-                    width={120}
+                    // height={100}
+                    // width={120}
                   />
                 </div>
               ))}
@@ -73,8 +74,8 @@ export const Gallery = (props) => {
                     src={Requests.HostUrl + item.large}
                     className="img-fluid"
                     alt="..."
-                    height={100}
-                    width={120}
+                    // height={100}
+                    // width={120}
                   />
                 </div>
               ))}

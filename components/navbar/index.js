@@ -110,7 +110,11 @@ export const Navbar = () => {
                     >
                       {isLoggedin ? (
                         <>
-                          <Dropdown.Item linkAs={Link} href="/profile">
+                          <Dropdown.Item
+                            onClick={() => {
+                              router.push("/profile");
+                            }}
+                          >
                             <div className="d-flex justify-content-between">
                               <Text className="mb-0">Profile</Text>
                               <User size={16} />

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Icon from "react-icons-kit";
 import { grid, rotateCcw, settings, lock } from "react-icons-kit/feather";
 import { GeneralImage } from "../image";
-import Logo from "../../public/assets/logowhite.png";
+import Logo from "../../public/assets/logo.jpeg";
 
 export const Sidebar = () => {
   const router = useRouter();
